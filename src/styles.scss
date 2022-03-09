@@ -1,1 +1,95 @@
 /* You can add global styles to this file, and also import other style files */
+
+$spacer: 1rem;
+
+html, body {
+  height: 100%;
+  // font-family: 'Montserrat', sans-serif;
+  font-family: -apple-system,BlinkMacSystemFont,segoe ui,roboto,oxygen,cantarell,helvetica neue,ubuntu,sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background-color: #f3f2ef;
+}
+
+
+.p-2 {
+  padding: ($spacer * .5) !important;
+}
+
+.p-3 {
+  padding: $spacer !important;
+}
+
+.pt-2 {
+  padding-top: ($spacer * .5) !important;
+}
+
+.pt-3 {
+  padding-top: $spacer !important;
+}
+
+.pb-2 {
+  padding-bottom: ($spacer * .5) !important;
+}
+
+.pb-3 {
+  padding-bottom: $spacer !important;
+}
+
+.px-3 {
+  padding-left: $spacer !important;
+  padding-right: $spacer !important;
+}
+
+.m-0 {
+  margin: unset !important;
+}
+
+.w-100 {
+  width: 100% !important;
+}
+
+.red {
+  border: 2px solid #fe657d !important;
+  color: #fe657d !important;
+}
+
+.green {
+  border: 2px solid #509b7d !important;
+  color: #509b7d !important;
+}
+
+.round-btn {
+  border-radius: 18px;
+  padding-left: 10px;
+  padding-right: 10px;
+  background-color: white;
+  font-size: 16px;
+  font-weight: 600;
+  transition: 0.3s;
+  border: 2px solid black;
+
+  &:hover {
+    cursor: pointer;
+    filter: brightness(95%);
+  }
+}
+
+.responsive {
+  width: 100%;
+  height: auto;
+}
+
+i, li, button {
+  user-select: none; 
+}
+
+.text-error {
+  color: #fe657d;
+}
