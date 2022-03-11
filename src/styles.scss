@@ -2,8 +2,10 @@
 
 $spacer: 1rem;
 
-html, body {
-  height: 100%;
+html, body { height: 100%; }
+// body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body {
+  margin: 0;
   // font-family: 'Montserrat', sans-serif;
   font-family: -apple-system,BlinkMacSystemFont,segoe ui,roboto,oxygen,cantarell,helvetica neue,ubuntu,sans-serif;
 }
@@ -15,6 +17,10 @@ html, body {
 body {
   margin: 0;
   background-color: #f3f2ef;
+}
+
+.bg-primary {
+  background-color: #005587 !important;
 }
 
 
@@ -93,3 +99,4 @@ i, li, button {
 .text-error {
   color: #fe657d;
 }
+
