@@ -56,6 +56,17 @@ export class AuthService {
     this.router.navigate(['/login']).then(() => {});
   }
 
+  navigateUserHome(): void {
+    let profile = JSON.parse(localStorage.getItem(this.USER_PROFILE) || '{}')
+    if (profile?.role === 'ADMIN') {
+      this.router.navigate(['/admin']).then(() => {});
+    } else if (profile?.role === 'FACULTY') {
+      this.router.navigate(['/faculty']).then(() => {});
+    } else if (profile?.role === 'PLACEMENT') {
+      this.router.navigate(['/placement']).then(() => {});
+    }
+  }
+
   public logoutAndNavigate(): void {
     this.logout();
     this.router.navigate(['/login']).then(() => {});

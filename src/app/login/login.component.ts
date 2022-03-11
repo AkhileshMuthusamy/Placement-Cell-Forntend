@@ -55,7 +55,7 @@ export class LoginComponent implements OnInit {
             this.submitted = false;
             this.authService.storeUserInfo(res.data);
             this.authService.isLoginSubject.next(true);
-            this.router.navigate(['/']).then(() => {});
+            this.navigate(res.data);
           } else {
             this.snackBar.open(res.message || 'Unable to login', 'Close', {duration: 2000});
           }
@@ -68,6 +68,18 @@ export class LoginComponent implements OnInit {
           this.snackBar.open( err.error?.message || 'Error while connecting. Please try again.', 'Close', {duration: 2000});
         }
       });
+    }
+  }
+
+  navigate(data: any): void {
+    if (data.profile?.role === 'ADMIN') {
+      this.router.navigate(['/admin']).then(() => {});
+    } else if (data.profile?.role === 'FACULTY') {
+      this.router.navigate(['/faculty']).then(() => {});
+    } else if (data.profile?.role === 'PLACEMENT') {
+      this.router.navigate(['/placement']).then(() => {});
+    } else {
+      this.snackBar.open( 'Internal error occurred. Please contact administrator', 'Close', {duration: 2000});
     }
   }
 }

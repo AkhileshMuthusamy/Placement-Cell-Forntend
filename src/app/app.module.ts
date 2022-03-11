@@ -22,16 +22,22 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {BrowserModule} from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {AdminLayoutComponent} from './admin/admin-layout.component';
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
+import {FacultyLayoutComponent} from './faculty/faculty-layout.component';
 import {LoginComponent} from './login/login.component';
+import {PlacementLayoutComponent} from './placement/placement-layout.component';
 import {HttpInterceptorService} from './shared/services/http-interceptor.service';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent
+    LoginComponent,
+    AdminLayoutComponent,
+    FacultyLayoutComponent,
+    PlacementLayoutComponent
   ],
   imports: [
     AppRoutingModule,
