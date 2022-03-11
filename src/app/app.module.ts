@@ -29,6 +29,8 @@ import {FacultyLayoutComponent} from './faculty/faculty-layout.component';
 import {LoginComponent} from './login/login.component';
 import {PlacementLayoutComponent} from './placement/placement-layout.component';
 import {HttpInterceptorService} from './shared/services/http-interceptor.service';
+import { ManageFacultyComponent } from './admin/manage-faculty/manage-faculty.component';
+import { RegisterUserComponent } from './admin/register-user/register-user.component';
 
 
 @NgModule({
@@ -37,7 +39,9 @@ import {HttpInterceptorService} from './shared/services/http-interceptor.service
     LoginComponent,
     AdminLayoutComponent,
     FacultyLayoutComponent,
-    PlacementLayoutComponent
+    PlacementLayoutComponent,
+    ManageFacultyComponent,
+    RegisterUserComponent
   ],
   imports: [
     AppRoutingModule,

@@ -68,7 +68,9 @@ export class AuthService {
   }
 
   public logoutAndNavigate(): void {
-    this.logout();
+    localStorage.removeItem(this.USER_TOKEN);
+    localStorage.removeItem(this.USER_PROFILE);
     this.router.navigate(['/login']).then(() => {});
+    this.isLoginSubject.next(false);
   }
 }

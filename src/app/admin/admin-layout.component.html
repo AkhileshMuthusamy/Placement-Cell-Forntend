@@ -1,1 +1,8 @@
 <p>Logged in as Admin</p>
+<div class="form-group pb-3">
+    <button mat-raised-button color="primary" class="" (click)="authService.logoutAndNavigate()">
+      <mat-icon>logout</mat-icon>
+      Log out
+    </button>
+</div>
+<app-manage-faculty></app-manage-faculty>
