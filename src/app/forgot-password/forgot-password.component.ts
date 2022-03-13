@@ -30,7 +30,6 @@ export class ForgotPasswordComponent implements OnInit {
       this.isLoading = true;
       this.authService.forgotPassword(this.id.value).subscribe({
         next: (res: APIResponse<any>) => {
-          console.log(res)
           if (!res.error) {
             this.submitted = false;
           } else {
