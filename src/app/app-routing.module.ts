@@ -7,6 +7,7 @@ import {LoginComponent} from './login/login.component';
 import {PlacementLayoutComponent} from './placement/placement-layout.component';
 import {ResetPasswordComponent} from './reset-password/reset-password.component';
 import {AuthGuardService} from './shared/services/auth-guard.service';
+import {StudentLayoutComponent} from './student/student-layout.component';
 
 const routes: Routes = [
   {
@@ -39,6 +40,11 @@ const routes: Routes = [
   {
     path: 'placement',
     component: PlacementLayoutComponent,
+    canActivate: [AuthGuardService]
+  },
+  {
+    path: 'student',
+    component: StudentLayoutComponent,
     canActivate: [AuthGuardService]
   },
   {path: '**', redirectTo: 'login'}

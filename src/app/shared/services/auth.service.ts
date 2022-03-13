@@ -95,6 +95,8 @@ export class AuthService {
       this.router.navigate(['/faculty']).then(() => {});
     } else if (profile?.role === 'PLACEMENT') {
       this.router.navigate(['/placement']).then(() => {});
+    } else if (profile?.role === 'STUDENT') {
+      this.router.navigate(['/student']).then(() => {});
     }
   }
 

@@ -21,11 +21,13 @@ export class AuthGuardService implements CanActivate {
 
     if (route.url.length > 0) {
       if (route.url[0].path === 'admin') {
-        canNavigate = this.authService.isAdmin()
+        canNavigate = this.authService.isAdmin();
       } else if (route.url[0].path === 'faculty') {
-        canNavigate =  this.authService.isFaculty()
+        canNavigate =  this.authService.isFaculty();
       } else if (route.url[0].path === 'placement') {
-        canNavigate =  this.authService.isPlacement()
+        canNavigate =  this.authService.isPlacement();
+      } else if (route.url[0].path === 'student') {
+        canNavigate =  this.authService.isStudent();
       }
     }
 
