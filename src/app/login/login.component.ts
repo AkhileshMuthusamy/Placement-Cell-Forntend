@@ -26,6 +26,7 @@ export class LoginComponent implements OnInit {
     private authService: AuthService
   ) {
     this.createForm();
+    this.authService.navigateUserHome();
   }
 
   ngOnInit(): void {
