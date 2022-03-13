@@ -46,6 +46,11 @@ export class AuthService {
     return null
   }
 
+  getUserProfile(): any {
+    let profile = JSON.parse(localStorage.getItem(this.USER_PROFILE) || '{}')
+    return profile;
+  }
+
   isAdmin(): boolean {
     return this.getUserRoleFromJWTToken() === 'ADMIN'
   }
