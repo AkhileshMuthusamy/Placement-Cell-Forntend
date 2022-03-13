@@ -38,8 +38,9 @@ export class HttpInterceptorService implements HttpInterceptor {
     return next.handle(req).pipe(
       tap(event => {
         if (event instanceof HttpResponse) {
-          if (event.body && event.body.success) {
-
+          console.log(event)
+          if (event.body?.notification?.message) {
+            this.snackBar.open( event.body?.notification?.message, 'Close', {duration: 2000});
           }
         }
       }),

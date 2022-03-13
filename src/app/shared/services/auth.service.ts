@@ -32,15 +32,15 @@ export class AuthService {
   }
 
   public isUserLoggedIn(): boolean {
-    const userLoggedIn = this.getToken() !== '';
-    if (!userLoggedIn) {
-      this.isLoginSubject.next(false);
-    }
-    return userLoggedIn;
+    return this.getToken() !== '';
   }
 
   login(data: any): Observable<APIResponse<any>> {
     return this.http.post<any>(`${this.apiURL}login`, data);
+  }
+
+  forgotPassword(id: string): Observable<APIResponse<any>> {
+    return this.http.post<any>(`${this.apiURL}forgot-password`, {id});
   }
 
   storeUserInfo(data: {token: string; profile: any;}): void {
