@@ -43,6 +43,10 @@ export class AuthService {
     return this.http.post<any>(`${this.apiURL}forgot-password`, {id});
   }
 
+  resetPassword(data: any): Observable<APIResponse<any>> {
+    return this.http.post<any>(`${this.apiURL}reset-password`, data);
+  }
+
   storeUserInfo(data: {token: string; profile: any;}): void {
     localStorage.setItem(this.USER_TOKEN, data.token);
     localStorage.setItem(this.USER_PROFILE, JSON.stringify(data.profile));
