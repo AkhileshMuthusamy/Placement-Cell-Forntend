@@ -23,31 +23,31 @@ import {MatTooltipModule} from '@angular/material/tooltip';
 import {BrowserModule} from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {AdminLayoutComponent} from './admin/admin-layout.component';
+import {ManageFacultyComponent} from './admin/manage-faculty/manage-faculty.component';
+import {RegisterUserComponent} from './admin/register-user/register-user.component';
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {FacultyLayoutComponent} from './faculty/faculty-layout.component';
+import {ForgotPasswordComponent} from './forgot-password/forgot-password.component';
 import {LoginComponent} from './login/login.component';
 import {PlacementLayoutComponent} from './placement/placement-layout.component';
+import {ResetPasswordComponent} from './reset-password/reset-password.component';
 import {HttpInterceptorService} from './shared/services/http-interceptor.service';
-import { ManageFacultyComponent } from './admin/manage-faculty/manage-faculty.component';
-import { RegisterUserComponent } from './admin/register-user/register-user.component';
-import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
-import { ResetPasswordComponent } from './reset-password/reset-password.component';
-import { StudentLayoutComponent } from './student/student-layout.component';
+import {StudentLayoutComponent} from './student/student-layout.component';
 
 
 @NgModule({
   declarations: [
-    AppComponent,
-    LoginComponent,
     AdminLayoutComponent,
+    AppComponent,
     FacultyLayoutComponent,
-    PlacementLayoutComponent,
-    ManageFacultyComponent,
-    RegisterUserComponent,
     ForgotPasswordComponent,
+    LoginComponent,
+    ManageFacultyComponent,
+    PlacementLayoutComponent,
+    RegisterUserComponent,
     ResetPasswordComponent,
-    StudentLayoutComponent
+    StudentLayoutComponent,
   ],
   imports: [
     AppRoutingModule,

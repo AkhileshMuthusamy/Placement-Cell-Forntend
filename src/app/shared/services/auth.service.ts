@@ -35,6 +35,33 @@ export class AuthService {
     return this.getToken() !== '';
   }
 
+  getUserRoleFromJWTToken(): string | null {
+    if (this.getToken()) {
+      const [, payload, ] = this.getToken().split('.');
+      // Convert payload from base64 to string, then parse it as JSON
+      const role = JSON.parse(atob(payload))['role'];
+      return role;
+    }
+
+    return null
+  }
+
+  isAdmin(): boolean {
+    return this.getUserRoleFromJWTToken() === 'ADMIN'
+  }
+
+  isFaculty(): boolean {
+    return this.getUserRoleFromJWTToken() === 'FACULTY'
+  }
+
+  isStudent(): boolean {
+    return this.getUserRoleFromJWTToken() === 'STUDENT'
+  }
+
+  isPlacement(): boolean {
+    return this.getUserRoleFromJWTToken() === 'PLACEMENT'
+  }
+
   login(data: any): Observable<APIResponse<any>> {
     return this.http.post<any>(`${this.apiURL}login`, data);
   }
