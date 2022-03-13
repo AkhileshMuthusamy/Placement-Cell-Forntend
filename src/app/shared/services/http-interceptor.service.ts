@@ -40,7 +40,7 @@ export class HttpInterceptorService implements HttpInterceptor {
         if (event instanceof HttpResponse) {
           console.log(event)
           if (event.body?.notification?.message) {
-            this.snackBar.open( event.body?.notification?.message, 'Close', {duration: 2000});
+            this.snackBar.open( event.body?.notification?.message, 'Close', {duration: 5000});
           }
         }
       }),
