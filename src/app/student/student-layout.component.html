@@ -1,1 +1,72 @@
-<p>student-layout works!</p>
+<div class="h-100">
+    <!-- Header -->
+    <div [ngStyle]="{height: '64px'}" [ngStyle.lt-sm]="{height: '56px'}">
+      <mat-toolbar color="primary">
+        <!-- Mobile Header -->
+        <mat-toolbar-row fxHide.gt-xs>
+          <div fxLayout="row" fxLayoutAlign="space-between center" class="w-100">
+            <button mat-icon-button (click)="sidenav.toggle()">
+              <mat-icon>menu</mat-icon>
+            </button>
+            <span fxLayout="row" fxLayoutAlign="space-between center">
+              <img class="header-logo" height="64px" width="64px" src="assets/images/logo.png" />
+            </span>
+            <button mat-icon-button [matMenuTriggerFor]="beforeMenu">
+              <mat-icon>more_vert</mat-icon>
+            </button>
+          </div>
+        </mat-toolbar-row>
+        <!-- Desktop Header -->
+        <mat-toolbar-row fxHide.lt-sm>
+          <div class="relative"></div>
+          <div fxLayout="row" fxLayoutAlign="space-between center" class="w-100">
+            <div fxLayout="row" fxLayoutAlign="space-between center">
+              <span fxLayout="row" fxLayoutAlign="space-between center">
+                <img class="header-logo" height="64px" width="64px" src="assets/images/logo.png"/>
+              </span>
+            </div>
+            <div  fxLayout="row" fxLayoutAlign="center center">
+              <label class="m-0">Welcome {{profile?.firstName}}</label>
+              <button mat-icon-button [matMenuTriggerFor]="beforeMenu">
+                <mat-icon>keyboard_arrow_down</mat-icon>
+              </button>
+            </div>
+            <!-- <div fxFlex="20px"></div> -->
+          </div>
+        </mat-toolbar-row>
+        <mat-menu #beforeMenu="matMenu" xPosition="before">
+          <button mat-menu-item (click)="openChangePasswordDialog()">
+            <mat-icon>password</mat-icon>
+            <span>Change Password</span>
+          </button>
+          <button mat-menu-item (click)="authService.logoutAndNavigate()">
+            <mat-icon>logout</mat-icon>
+            <span>Logout</span>
+          </button>
+        </mat-menu>
+      </mat-toolbar>
+    </div>
+  
+    <!-- Side Nav -->
+    <div ngClass="full-height-lt-sm" ngClass.gt-xs="full-height-gt-xs">
+      <mat-sidenav-container class="h-100 pt-0" autosize>
+        <mat-sidenav #sidenav [mode]="sideMenuMode" class="dark-bg" [opened]="sideMenuOpened">
+          <mat-selection-list [multiple]="false">
+            <mat-list-option (click)="navigate('/dashboard')">
+              <mat-icon mat-list-icon>person</mat-icon>
+              <span>My Profile</span>
+            </mat-list-option>
+            <mat-divider></mat-divider>
+            
+          </mat-selection-list>
+        </mat-sidenav>
+  
+        <mat-sidenav-content>
+  
+          <router-outlet></router-outlet>
+  
+        </mat-sidenav-content>
+      </mat-sidenav-container>
+    </div>
+  </div>
+  
