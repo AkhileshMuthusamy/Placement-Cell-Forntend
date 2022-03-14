@@ -36,6 +36,10 @@ import {PlacementLayoutComponent} from './placement/placement-layout.component';
 import {ResetPasswordComponent} from './reset-password/reset-password.component';
 import {HttpInterceptorService} from './shared/services/http-interceptor.service';
 import {StudentLayoutComponent} from './student/student-layout.component';
+import { AdminProfileComponent } from './admin/admin-profile/admin-profile.component';
+import { FacultyProfileComponent } from './faculty/faculty-profile/faculty-profile.component';
+import { PlacementProfileComponent } from './placement/placement-profile/placement-profile.component';
+import { StudentProfileComponent } from './student/student-profile/student-profile.component';
 
 
 @NgModule({
@@ -51,6 +55,10 @@ import {StudentLayoutComponent} from './student/student-layout.component';
     ResetPasswordComponent,
     StudentLayoutComponent,
     ChangePasswordComponent,
+    AdminProfileComponent,
+    FacultyProfileComponent,
+    PlacementProfileComponent,
+    StudentProfileComponent,
   ],
   imports: [
     AppRoutingModule,
