@@ -38,6 +38,11 @@ const routes: Routes = [
     canActivate: [AuthGuardService],
     children: [
       {
+        path: '',
+        pathMatch: 'full',
+        redirectTo: 'profile'
+      },
+      {
         path: 'profile',
         component: AdminProfileComponent
       },
@@ -53,6 +58,11 @@ const routes: Routes = [
     canActivate: [AuthGuardService],
     children: [
       {
+        path: '',
+        pathMatch: 'full',
+        redirectTo: 'profile'
+      },
+      {
         path: 'profile',
         component: FacultyProfileComponent
       },
@@ -64,6 +74,11 @@ const routes: Routes = [
     canActivate: [AuthGuardService],
     children: [
       {
+        path: '',
+        pathMatch: 'full',
+        redirectTo: 'profile'
+      },
+      {
         path: 'profile',
         component: PlacementProfileComponent
       },
@@ -74,6 +89,11 @@ const routes: Routes = [
     component: StudentLayoutComponent,
     canActivate: [AuthGuardService],
     children: [
+      {
+        path: '',
+        pathMatch: 'full',
+        redirectTo: 'profile'
+      },
       {
         path: 'profile',
         component: StudentProfileComponent
