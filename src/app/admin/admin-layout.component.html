@@ -35,7 +35,7 @@
         </div>
       </mat-toolbar-row>
       <mat-menu #beforeMenu="matMenu" xPosition="before">
-        <button mat-menu-item (click)="openChangePassword()">
+        <button mat-menu-item (click)="openChangePasswordDialog()">
           <mat-icon>password</mat-icon>
           <span>Change Password</span>
         </button>
@@ -59,12 +59,12 @@
           <mat-divider></mat-divider>
           <mat-list-option (click)="navigate('/predict')">
             <mat-icon mat-list-icon>badge</mat-icon>
-            <span>Manage Faculty</span>
+            <span>Manage Faculties</span>
           </mat-list-option>
           <mat-divider></mat-divider>
           <mat-list-option (click)="navigate('/settings')">
             <mat-icon mat-list-icon>school</mat-icon>
-            <span>Manage Student</span>
+            <span>Manage Students</span>
           </mat-list-option>
           <mat-divider></mat-divider>
         </mat-selection-list>

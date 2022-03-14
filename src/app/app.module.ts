@@ -4,6 +4,7 @@ import {FlexLayoutModule} from '@angular/flex-layout';
 import {ReactiveFormsModule} from '@angular/forms';
 import {MatButtonModule} from '@angular/material/button';
 import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatDialogModule} from '@angular/material/dialog';
 import {MatDividerModule} from '@angular/material/divider';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatIconModule} from '@angular/material/icon';
@@ -27,6 +28,7 @@ import {ManageFacultyComponent} from './admin/manage-faculty/manage-faculty.comp
 import {RegisterUserComponent} from './admin/register-user/register-user.component';
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
+import {ChangePasswordComponent} from './change-password/change-password.component';
 import {FacultyLayoutComponent} from './faculty/faculty-layout.component';
 import {ForgotPasswordComponent} from './forgot-password/forgot-password.component';
 import {LoginComponent} from './login/login.component';
@@ -48,6 +50,7 @@ import {StudentLayoutComponent} from './student/student-layout.component';
     RegisterUserComponent,
     ResetPasswordComponent,
     StudentLayoutComponent,
+    ChangePasswordComponent,
   ],
   imports: [
     AppRoutingModule,
@@ -57,6 +60,7 @@ import {StudentLayoutComponent} from './student/student-layout.component';
     HttpClientModule,
     MatButtonModule,
     MatCheckboxModule,
+    MatDialogModule,
     MatDividerModule,
     MatFormFieldModule,
     MatIconModule,

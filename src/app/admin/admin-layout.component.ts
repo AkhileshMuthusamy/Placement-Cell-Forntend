@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {MediaObserver} from '@angular/flex-layout';
+import {MatDialog} from '@angular/material/dialog';
+import {ChangePasswordComponent} from '../change-password/change-password.component';
 import {AuthService} from '../shared/services/auth.service';
 
 @Component({
@@ -15,6 +17,7 @@ export class AdminLayoutComponent implements OnInit {
 
   constructor(
     public authService: AuthService,
+    public dialog: MatDialog,
     public mediaObserver: MediaObserver,
   ) {
     this.profile = this.authService.getUserProfile();
@@ -34,8 +37,14 @@ export class AdminLayoutComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  openChangePassword(): void {
+  openChangePasswordDialog(): void {
+    const dialogRef = this.dialog.open(ChangePasswordComponent, {
+      width: '450px'
+    });
 
+    dialogRef.afterClosed().subscribe(result => {
+
+    });
   }
 
   navigate(path: string): void {

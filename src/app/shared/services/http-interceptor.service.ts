@@ -47,7 +47,11 @@ export class HttpInterceptorService implements HttpInterceptor {
       catchError((error: HttpErrorResponse) => {
         if (error instanceof HttpErrorResponse) {
           if (error.status === 400) {
-            this.snackBar.open( error.error.message, 'Close', {duration: 2000});
+            if (error.error?.notification?.message) {
+              this.snackBar.open( error.error?.notification?.message, 'Close', {duration: 5000});
+            } else {
+              this.snackBar.open( error.error.message, 'Close', {duration: 2000});
+            }
           } else if (error.status === 0) {
             this.snackBar.open( 'Unknown error occurred', 'Close', {duration: 2000});
           } else if (error.status === 401) {
