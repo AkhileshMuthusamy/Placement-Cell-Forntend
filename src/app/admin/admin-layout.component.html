@@ -52,17 +52,17 @@
     <mat-sidenav-container class="h-100 pt-0" autosize>
       <mat-sidenav #sidenav [mode]="sideMenuMode" class="dark-bg" [opened]="sideMenuOpened">
         <mat-selection-list [multiple]="false">
-          <mat-list-option (click)="navigate('/dashboard')">
+          <mat-list-option (click)="navigate('/admin/profile')">
             <mat-icon mat-list-icon>person</mat-icon>
             <span>My Profile</span>
           </mat-list-option>
           <mat-divider></mat-divider>
-          <mat-list-option (click)="navigate('/predict')">
+          <mat-list-option (click)="navigate('/admin/manage-faculty')">
             <mat-icon mat-list-icon>badge</mat-icon>
             <span>Manage Faculties</span>
           </mat-list-option>
           <mat-divider></mat-divider>
-          <mat-list-option (click)="navigate('/settings')">
+          <mat-list-option (click)="navigate('/admin/manage-student')">
             <mat-icon mat-list-icon>school</mat-icon>
             <span>Manage Students</span>
           </mat-list-option>

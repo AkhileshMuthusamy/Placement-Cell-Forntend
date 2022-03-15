@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {MediaObserver} from '@angular/flex-layout';
 import {MatDialog} from '@angular/material/dialog';
+import {Router} from '@angular/router';
 import {ChangePasswordComponent} from '../change-password/change-password.component';
 import {AuthService} from '../shared/services/auth.service';
 
@@ -19,6 +20,7 @@ export class StudentLayoutComponent implements OnInit {
     public authService: AuthService,
     public dialog: MatDialog,
     public mediaObserver: MediaObserver,
+    private router: Router
   ) {
     this.profile = this.authService.getUserProfile();
 
@@ -48,7 +50,7 @@ export class StudentLayoutComponent implements OnInit {
   }
 
   navigate(path: string): void {
-
+    this.router.navigate([path]).then(() => { });
   }
 
 }

@@ -40,6 +40,7 @@ import { AdminProfileComponent } from './admin/admin-profile/admin-profile.compo
 import { FacultyProfileComponent } from './faculty/faculty-profile/faculty-profile.component';
 import { PlacementProfileComponent } from './placement/placement-profile/placement-profile.component';
 import { StudentProfileComponent } from './student/student-profile/student-profile.component';
+import { ManageStudentComponent } from './admin/manage-student/manage-student.component';
 
 
 @NgModule({
@@ -59,6 +60,7 @@ import { StudentProfileComponent } from './student/student-profile/student-profi
     FacultyProfileComponent,
     PlacementProfileComponent,
     StudentProfileComponent,
+    ManageStudentComponent,
   ],
   imports: [
     AppRoutingModule,

@@ -3,6 +3,7 @@ import {RouterModule, Routes} from '@angular/router';
 import {AdminLayoutComponent} from './admin/admin-layout.component';
 import {AdminProfileComponent} from './admin/admin-profile/admin-profile.component';
 import {ManageFacultyComponent} from './admin/manage-faculty/manage-faculty.component';
+import {ManageStudentComponent} from './admin/manage-student/manage-student.component';
 import {FacultyLayoutComponent} from './faculty/faculty-layout.component';
 import {FacultyProfileComponent} from './faculty/faculty-profile/faculty-profile.component';
 import {ForgotPasswordComponent} from './forgot-password/forgot-password.component';
@@ -49,6 +50,10 @@ const routes: Routes = [
       {
         path: 'manage-faculty',
         component: ManageFacultyComponent
+      },
+      {
+        path: 'manage-student',
+        component: ManageStudentComponent
       }
     ]
   },
