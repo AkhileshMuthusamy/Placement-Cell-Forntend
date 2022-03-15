@@ -85,3 +85,16 @@ input::-ms-reveal,
 input::-ms-clear {
   display: none;
 }
+
+
+.sub-heading {
+  font-weight: 700;
+  color: #686980;
+  text-transform: uppercase;
+}
+
+// Bug Fix: Material input label not aligned with border on outline appearance
+
+.mat-form-field-outline-start {
+  width: 29px !important;
+}
