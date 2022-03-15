@@ -4,6 +4,8 @@ import {FlexLayoutModule} from '@angular/flex-layout';
 import {ReactiveFormsModule} from '@angular/forms';
 import {MatButtonModule} from '@angular/material/button';
 import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatNativeDateModule} from '@angular/material/core';
+import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatDividerModule} from '@angular/material/divider';
 import {MatFormFieldModule} from '@angular/material/form-field';
@@ -24,23 +26,23 @@ import {MatTooltipModule} from '@angular/material/tooltip';
 import {BrowserModule} from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {AdminLayoutComponent} from './admin/admin-layout.component';
+import {AdminProfileComponent} from './admin/admin-profile/admin-profile.component';
 import {ManageFacultyComponent} from './admin/manage-faculty/manage-faculty.component';
+import {ManageStudentComponent} from './admin/manage-student/manage-student.component';
 import {RegisterUserComponent} from './admin/register-user/register-user.component';
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {ChangePasswordComponent} from './change-password/change-password.component';
 import {FacultyLayoutComponent} from './faculty/faculty-layout.component';
+import {FacultyProfileComponent} from './faculty/faculty-profile/faculty-profile.component';
 import {ForgotPasswordComponent} from './forgot-password/forgot-password.component';
 import {LoginComponent} from './login/login.component';
 import {PlacementLayoutComponent} from './placement/placement-layout.component';
+import {PlacementProfileComponent} from './placement/placement-profile/placement-profile.component';
 import {ResetPasswordComponent} from './reset-password/reset-password.component';
 import {HttpInterceptorService} from './shared/services/http-interceptor.service';
 import {StudentLayoutComponent} from './student/student-layout.component';
-import { AdminProfileComponent } from './admin/admin-profile/admin-profile.component';
-import { FacultyProfileComponent } from './faculty/faculty-profile/faculty-profile.component';
-import { PlacementProfileComponent } from './placement/placement-profile/placement-profile.component';
-import { StudentProfileComponent } from './student/student-profile/student-profile.component';
-import { ManageStudentComponent } from './admin/manage-student/manage-student.component';
+import {StudentProfileComponent} from './student/student-profile/student-profile.component';
 
 
 @NgModule({
@@ -70,6 +72,7 @@ import { ManageStudentComponent } from './admin/manage-student/manage-student.co
     HttpClientModule,
     MatButtonModule,
     MatCheckboxModule,
+    MatDatepickerModule,
     MatDialogModule,
     MatDividerModule,
     MatFormFieldModule,
@@ -77,6 +80,7 @@ import { ManageStudentComponent } from './admin/manage-student/manage-student.co
     MatInputModule,
     MatListModule,
     MatMenuModule,
+    MatNativeDateModule,
     MatPaginatorModule,
     MatProgressSpinnerModule,
     MatRadioModule,
