@@ -95,6 +95,8 @@ input::-ms-clear {
 
 // Bug Fix: Material input label not aligned with border on outline appearance
 
-.mat-form-field-outline-start {
-  width: 29px !important;
+.in-dialog {
+  .mat-form-field-outline-start {
+    width: 29px !important;
+  }
 }
