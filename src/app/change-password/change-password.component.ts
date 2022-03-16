@@ -23,6 +23,8 @@ export class ChangePasswordComponent implements OnInit {
     private authService: AuthService,
     public dialogRef: MatDialogRef<ChangePasswordComponent>
   ) {
+    // Disabled dialog close when clicked outside
+    dialogRef.disableClose = true;
     this.createForm();
   }
 
