@@ -1,5 +1,6 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {MatChipInputEvent} from '@angular/material/chips';
 import {MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import {APIResponse} from 'src/app/shared/objects/api-response';
 import {User} from 'src/app/shared/objects/global-objects';
@@ -16,6 +17,7 @@ export class EditStudentProfileComponent implements OnInit {
   profileForm!: FormGroup;
   isLoading = false;
   submitted = false;
+  skills = new Set<string>([]);
 
   constructor(
     private fb: FormBuilder,
@@ -28,6 +30,9 @@ export class EditStudentProfileComponent implements OnInit {
     dialogRef.disableClose = true;
     this.createForm();
     this.profileForm.patchValue(data);
+    for (const skill of data?.skills) {
+      this.skills.add(skill);
+    }
   }
 
   ngOnInit(): void {
@@ -48,6 +53,19 @@ export class EditStudentProfileComponent implements OnInit {
   }
 
   get f(): any { return this.profileForm.controls; }
+
+  addKeywordFromInput(event: MatChipInputEvent) {
+    if (event.value) {
+      this.skills.add(event.value);
+      this.profileForm.controls['skills'].setValue([...this.skills])
+      event.chipInput!.clear();
+    }
+  }
+
+  removeKeyword(keyword: string) {
+    this.skills.delete(keyword);
+    this.profileForm.controls['skills'].setValue([...this.skills])
+  }
 
   onSubmit(): void {
     this.submitted = true;

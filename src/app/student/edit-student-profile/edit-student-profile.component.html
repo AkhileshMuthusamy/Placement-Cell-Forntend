@@ -73,11 +73,30 @@
                     Invalid value
                 </mat-error>
             </mat-form-field>
-            <div  >
-
-            </div>
 
         </div>
+
+        <mat-form-field class="w-100" appearance="fill">
+            <mat-label>Skills</mat-label>
+            <mat-chip-list #chipList aria-label="Video keywords" multiple formControlName="skills">
+              <mat-chip
+                  *ngFor="let skill of skills"
+                  [selected]="skill"
+                  [value]="skill"
+                  (removed)="removeKeyword(skill)">
+                {{skill}}
+                <button matChipRemove>
+                    <mat-icon>cancel</mat-icon>
+                </button>
+              </mat-chip>
+              <input
+                placeholder="New skill..."
+                [matChipInputFor]="chipList"
+                [matChipInputAddOnBlur]="true"
+                (matChipInputTokenEnd)="addKeywordFromInput($event)">
+            </mat-chip-list>
+        </mat-form-field>
+
     </form>
 </mat-dialog-content>
 <mat-divider></mat-divider>
