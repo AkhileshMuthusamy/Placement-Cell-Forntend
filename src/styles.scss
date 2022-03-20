@@ -88,9 +88,11 @@ input::-ms-clear {
 
 
 .sub-heading {
-  font-weight: 700;
+  font-weight: 700 !important;
   color: #686980;
   text-transform: uppercase;
+  letter-spacing: 3px !important;
+  margin: 0 !important;
 }
 
 // Bug Fix: Material input label not aligned with border on outline appearance

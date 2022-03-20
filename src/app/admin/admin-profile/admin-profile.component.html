@@ -1,1 +1,54 @@
-<p>admin-profile works!</p>
+<div class="p-3">
+    <div fxLayout="row" fxLayoutAlign="space-between end">
+        <h3 fxFlex class="sub-heading">BASIC INFORMATION</h3>
+        <button fxFlex="150px" mat-raised-button color="primary" class="w-100" [disabled]="isLoading" (click)="openEditProfileDialog()">
+            <mat-icon>edit</mat-icon>
+            Edit Profile
+        </button>
+    </div>
+    <hr />
+    <div class="mb-3">
+        <div fxLayout="row" fxLayoutGap="15px" class="w-100 mb-2">
+            <div fxFlex="200px">Name</div>
+            <span fxFlex="5px">:</span>
+            <div fxFlex>{{profile?.firstName}} {{profile?.lastName}}</div>
+        </div>
+        <div fxLayout="row" fxLayoutGap="15px" class="w-100 mb-2">
+            <div fxFlex="200px">Date of birth</div>
+            <span fxFlex="5px">:</span>
+            <div fxFlex>{{profile?.dateOfBirth}}</div>
+        </div>
+        <div fxLayout="row" fxLayoutGap="15px" class="w-100 mb-2">
+            <div fxFlex="200px">Gender</div>
+            <span fxFlex="5px">:</span>
+            <div fxFlex>{{profile?.gender | titlecase}}</div>
+        </div>
+        <div fxLayout="row" fxLayoutGap="15px" class="w-100 mb-2">
+            <div fxFlex="200px">Role</div>
+            <span fxFlex="5px">:</span>
+            <div fxFlex>{{profile?.role | titlecase}}</div>
+        </div>
+
+    </div>
+    
+    <h3 class="sub-heading">CONTACT INFORMATION</h3>
+    <hr />
+    <div class="mb-3">
+        <div fxLayout="row" fxLayoutGap="15px" class="w-100 mb-2">
+            <div fxFlex="200px">Email</div>
+            <span fxFlex="5px">:</span>
+            <div fxFlex>{{profile?.email}}</div>
+        </div>
+        <div fxLayout="row" fxLayoutGap="15px" class="w-100 mb-2">
+            <div fxFlex="200px">Phone</div>
+            <span fxFlex="5px">:</span>
+            <div fxFlex>{{profile?.phone}}</div>
+        </div>
+        <div fxLayout="row" fxLayoutGap="15px" class="w-100 mb-2">
+            <div fxFlex="200px">Address</div>
+            <span fxFlex="5px">:</span>
+            <address fxFlex>{{profile?.address}}</address>
+        </div>
+    </div>
+
+</div>

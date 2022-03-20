@@ -3,6 +3,7 @@ import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
 import {environment} from 'src/environments/environment';
 import {APIResponse} from '../objects/api-response';
+import {User} from '../objects/global-objects';
 
 @Injectable({
   providedIn: 'root'
@@ -22,5 +23,9 @@ export class ApiService {
 
   getStudentList(): Observable<APIResponse<any>> {
     return this.http.get<APIResponse<any>>(`${this.apiURL}student-list`);
+  }
+
+  getProfile(): Observable<APIResponse<User>> {
+    return this.http.get<APIResponse<User>>(`${this.apiURL}profile`)
   }
 }
