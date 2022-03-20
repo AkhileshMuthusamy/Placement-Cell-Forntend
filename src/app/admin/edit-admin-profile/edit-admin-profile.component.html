@@ -1,7 +1,7 @@
-<h2 mat-dialog-title>Add {{data?.title}}</h2>
+<h2 mat-dialog-title>Edit Profile</h2>
 <mat-divider></mat-divider>
 <mat-dialog-content class="p-3">
-    <form [formGroup]="registrationForm" class="w-100">
+    <form [formGroup]="profileForm" class="w-100">
         <mat-form-field appearance="fill" class="w-100">
             <mat-label>First Name</mat-label>
             <input matInput type="text" formControlName="firstName" />
@@ -22,7 +22,7 @@
 
             <mat-form-field fxFlex appearance="fill" class="w-100">
                 <mat-label>User ID</mat-label>
-                <input matInput type="text" formControlName="id" />
+                <input matInput type="text" formControlName="id" readonly/>
                 <mat-error *ngIf="f['id'].invalid && (f['id'].dirty || f['id'].touched || submitted)">
                     Required
                 </mat-error>

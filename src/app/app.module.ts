@@ -28,16 +28,19 @@ import {BrowserModule} from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {AdminLayoutComponent} from './admin/admin-layout.component';
 import {AdminProfileComponent} from './admin/admin-profile/admin-profile.component';
+import {EditAdminProfileComponent} from './admin/edit-admin-profile/edit-admin-profile.component';
 import {ManageFacultyComponent} from './admin/manage-faculty/manage-faculty.component';
 import {ManageStudentComponent} from './admin/manage-student/manage-student.component';
 import {RegisterUserComponent} from './admin/register-user/register-user.component';
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {ChangePasswordComponent} from './change-password/change-password.component';
+import {EditFacultyProfileComponent} from './faculty/edit-faculty-profile/edit-faculty-profile.component';
 import {FacultyLayoutComponent} from './faculty/faculty-layout.component';
 import {FacultyProfileComponent} from './faculty/faculty-profile/faculty-profile.component';
 import {ForgotPasswordComponent} from './forgot-password/forgot-password.component';
 import {LoginComponent} from './login/login.component';
+import {EditPlacementProfileComponent} from './placement/edit-placement-profile/edit-placement-profile.component';
 import {PlacementLayoutComponent} from './placement/placement-layout.component';
 import {PlacementProfileComponent} from './placement/placement-profile/placement-profile.component';
 import {ResetPasswordComponent} from './reset-password/reset-password.component';
@@ -66,6 +69,9 @@ import {StudentProfileComponent} from './student/student-profile/student-profile
     StudentProfileComponent,
     ManageStudentComponent,
     EditStudentProfileComponent,
+    EditPlacementProfileComponent,
+    EditFacultyProfileComponent,
+    EditAdminProfileComponent,
   ],
   imports: [
     AppRoutingModule,

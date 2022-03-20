@@ -1,7 +1,10 @@
 import {Component, OnInit} from '@angular/core';
+import {MatDialog} from '@angular/material/dialog';
 import {Subscription} from 'rxjs';
+import {EditFacultyProfileComponent} from 'src/app/faculty/edit-faculty-profile/edit-faculty-profile.component';
 import {User} from 'src/app/shared/objects/global-objects';
 import {DataService} from 'src/app/shared/services/data.service';
+import {EditPlacementProfileComponent} from '../edit-placement-profile/edit-placement-profile.component';
 
 @Component({
   selector: 'app-placement-profile',
@@ -16,7 +19,8 @@ export class PlacementProfileComponent implements OnInit {
   $subscription!: Subscription;
   
   constructor(
-    private dataService: DataService
+    private dataService: DataService,
+    public dialog: MatDialog,
   ) { }
 
   ngOnInit(): void {
@@ -29,7 +33,16 @@ export class PlacementProfileComponent implements OnInit {
   }
 
   openEditProfileDialog(): void {
+    const dialogRef = this.dialog.open(EditFacultyProfileComponent, {
+      width: '550px',
+      data: this.profile
+    });
 
+    dialogRef.afterClosed().subscribe(result => {
+      if (result == 'SUCCESS') {
+        this.dataService.loadProfile()
+      }
+    });
   }
 
 }

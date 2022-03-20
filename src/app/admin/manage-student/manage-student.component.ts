@@ -21,7 +21,7 @@ export class ManageStudentComponent implements OnInit {
   addStudent(): void {
     const dialogRef = this.dialog.open(RegisterUserComponent, {
       width: '550px',
-      data: {type: 'STUDENT'}
+      data: {type: 'STUDENT', title: 'Student'}
     });
 
     dialogRef.afterClosed().subscribe(result => {

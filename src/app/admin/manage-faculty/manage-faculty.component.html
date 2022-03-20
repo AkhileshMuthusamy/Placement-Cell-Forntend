@@ -1,8 +1,21 @@
-<div class="form-group pb-3">
-    <button mat-raised-button color="primary" class="" [disabled]="isLoading" (click)="addFaculty()">
-      <mat-icon>person_add_alt</mat-icon>
-      Add Faculty
-    </button>
+<div class="m-3">
+
+  <div fxLayout="row" fxLayoutAlign="space-between end">
+    <h1 class="m-0">Faculty List</h1>
+    <div fxLayout="row" fxLayoutGap="15px">
+        <button mat-raised-button color="primary" class="" [disabled]="isLoading" (click)="addFaculty()">
+          <mat-icon>person_add_alt</mat-icon>
+          Add Faculty
+        </button>
+        <button mat-raised-button color="primary" class="" [disabled]="isLoading" (click)="addPlacementFaculty()">
+          <mat-icon>person_add_alt</mat-icon>
+          Add Placement Faculty
+        </button>
+    </div>
+  </div>
+  <hr />
+
 </div>
+
 
 

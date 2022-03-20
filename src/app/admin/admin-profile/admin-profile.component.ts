@@ -1,7 +1,9 @@
 import {Component, OnInit} from '@angular/core';
+import {MatDialog} from '@angular/material/dialog';
 import {Subscription} from 'rxjs';
 import {User} from 'src/app/shared/objects/global-objects';
 import {DataService} from 'src/app/shared/services/data.service';
+import {EditAdminProfileComponent} from '../edit-admin-profile/edit-admin-profile.component';
 
 @Component({
   selector: 'app-admin-profile',
@@ -16,7 +18,8 @@ export class AdminProfileComponent implements OnInit {
   $subscription!: Subscription;
   
   constructor(
-    private dataService: DataService
+    private dataService: DataService,
+    public dialog: MatDialog,
   ) { }
 
   ngOnInit(): void {
@@ -29,7 +32,16 @@ export class AdminProfileComponent implements OnInit {
   }
 
   openEditProfileDialog(): void {
+    const dialogRef = this.dialog.open(EditAdminProfileComponent, {
+      width: '550px',
+      data: this.profile
+    });
 
+    dialogRef.afterClosed().subscribe(result => {
+      if (result == 'SUCCESS') {
+        this.dataService.loadProfile()
+      }
+    });
   }
 
 }
