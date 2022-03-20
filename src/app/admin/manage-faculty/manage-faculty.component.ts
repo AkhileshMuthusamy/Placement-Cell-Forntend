@@ -5,6 +5,7 @@ import {MatTableDataSource} from '@angular/material/table';
 import {APIResponse} from 'src/app/shared/objects/api-response';
 import {User} from 'src/app/shared/objects/global-objects';
 import {ApiService} from 'src/app/shared/services/api.service';
+import {EditUserComponent} from '../edit-user/edit-user.component';
 import {RegisterUserComponent} from '../register-user/register-user.component';
 
 @Component({
@@ -77,7 +78,16 @@ export class ManageFacultyComponent implements OnInit {
   }
 
   openEditUserDialog(row: any): void {
-    
+    const dialogRef = this.dialog.open(EditUserComponent, {
+      width: '550px',
+      data: {formData: row, title: 'Faculty'}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result === 'SUCCESS') {
+        this.loadList();
+      }
+    });
   }
 
 }

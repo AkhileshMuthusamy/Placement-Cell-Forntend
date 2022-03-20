@@ -51,6 +51,7 @@ import {StudentProfileComponent} from './student/student-profile/student-profile
 import { UploadGradeComponent } from './faculty/upload-grade/upload-grade.component';
 import {LoaderDirective} from './shared/directives/loader.directive';
 import {MatCardModule} from '@angular/material/card';
+import { EditUserComponent } from './admin/edit-user/edit-user.component';
 
 
 @NgModule({
@@ -76,7 +77,8 @@ import {MatCardModule} from '@angular/material/card';
     EditFacultyProfileComponent,
     EditAdminProfileComponent,
     UploadGradeComponent,
-    LoaderDirective
+    LoaderDirective,
+    EditUserComponent
   ],
   imports: [
     AppRoutingModule,

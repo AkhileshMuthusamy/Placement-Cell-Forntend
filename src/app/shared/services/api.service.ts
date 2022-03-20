@@ -32,4 +32,14 @@ export class ApiService {
   fetchUserList(role: Array<string>): Observable<APIResponse<Array<User>>> {
     return this.http.post<APIResponse<Array<User>>>(`${this.apiURL}list-user`, {role});
   }
+
+  updateUser(data: {id: string, data: any}): Observable<APIResponse<any>> {
+    return this.http.put<APIResponse<any>>(`${this.apiURL}update-user`, data);
+  }
+
+  disableUser(ids: Array<string>): Observable<APIResponse<any>> {
+    return this.http.put<APIResponse<any>>(`${this.apiURL}disable-user`, {ids});
+  }
+
+
 }

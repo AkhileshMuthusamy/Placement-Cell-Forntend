@@ -6,6 +6,7 @@ import {APIResponse} from 'src/app/shared/objects/api-response';
 import {User} from 'src/app/shared/objects/global-objects';
 import {ApiService} from 'src/app/shared/services/api.service';
 import {DataService} from 'src/app/shared/services/data.service';
+import {EditUserComponent} from '../edit-user/edit-user.component';
 import {RegisterUserComponent} from '../register-user/register-user.component';
 
 @Component({
@@ -62,12 +63,23 @@ export class ManageStudentComponent implements OnInit, AfterViewInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      this.loadList();
+      if (result === 'SUCCESS') {
+        this.loadList();
+      }
     });
   }
 
   openEditUserDialog(row: any): void {
-    
+    const dialogRef = this.dialog.open(EditUserComponent, {
+      width: '550px',
+      data: {formData: row, title: 'Student'}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result === 'SUCCESS') {
+        this.loadList();
+      }
+    });
   }
 
 }

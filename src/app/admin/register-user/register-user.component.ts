@@ -56,7 +56,7 @@ export class RegisterUserComponent implements OnInit {
         next: (res: {error: any; data: any; message: any;}) => {
           if (!res.error) {
             this.submitted = false;
-            this.dialogRef.close();
+            this.dialogRef.close('SUCCESS');
           }
           this.isLoading = false;
         },
