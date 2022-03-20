@@ -3,6 +3,7 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {ActivatedRoute, Router} from '@angular/router';
 import {AuthService} from '../shared/services/auth.service';
+import {DataService} from '../shared/services/data.service';
 
 @Component({
   selector: 'app-login',
@@ -23,7 +24,8 @@ export class LoginComponent implements OnInit {
     private route: ActivatedRoute,
     private snackBar: MatSnackBar,
     private router: Router,
-    private authService: AuthService
+    private authService: AuthService,
+    private dataService: DataService
   ) {
     this.createForm();
     this.authService.navigateUserHome();
@@ -56,6 +58,7 @@ export class LoginComponent implements OnInit {
             this.submitted = false;
             this.authService.storeUserInfo(res.data);
             this.authService.isLoginSubject.next(true);
+            this.dataService.loadProfile();
             this.navigate(res.data);
           } else {
             this.snackBar.open(res.message || 'Unable to login', 'Close', {duration: 2000});
@@ -79,8 +82,10 @@ export class LoginComponent implements OnInit {
       this.router.navigate(['/faculty']).then(() => {});
     } else if (data.profile?.role === 'PLACEMENT') {
       this.router.navigate(['/placement']).then(() => {});
+    } else if (data.profile?.role === 'STUDENT') {
+      this.router.navigate(['/student']).then(() => {});
     } else {
-      this.snackBar.open( 'Internal error occurred. Please contact administrator', 'Close', {duration: 2000});
+      this.snackBar.open( 'Internal error occurred. Please contact administrator', 'Close', {duration: 5000});
     }
   }
 }
