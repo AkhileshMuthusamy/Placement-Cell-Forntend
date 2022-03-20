@@ -21,15 +21,15 @@ export class ApiService {
     return this.http.post<any>(`${this.apiURL}register`, data);
   }
 
-  getStudentList(): Observable<APIResponse<any>> {
-    return this.http.get<APIResponse<any>>(`${this.apiURL}student-list`);
-  }
-
   getProfile(): Observable<APIResponse<User>> {
     return this.http.get<APIResponse<User>>(`${this.apiURL}profile`)
   }
 
   updateProfile(data: User): Observable<APIResponse<any>> {
     return this.http.put<any>(`${this.apiURL}profile`, data);
+  }
+
+  fetchUserList(role: [string]): Observable<APIResponse<Array<User>>> {
+    return this.http.post<APIResponse<Array<User>>>(`${this.apiURL}list-user`, {role});
   }
 }

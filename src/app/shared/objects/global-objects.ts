@@ -15,4 +15,6 @@ export interface User {
     '__v': number;
     'hasNotified': boolean;
     'skills': Array<string>;
+    'cgpa': number;
+    'disabled': boolean;
 }
