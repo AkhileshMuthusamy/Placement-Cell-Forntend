@@ -4,6 +4,7 @@ import {FlexLayoutModule} from '@angular/flex-layout';
 import {ReactiveFormsModule} from '@angular/forms';
 import {MatButtonModule} from '@angular/material/button';
 import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatChipsModule} from '@angular/material/chips';
 import {MatNativeDateModule} from '@angular/material/core';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatDialogModule} from '@angular/material/dialog';
@@ -72,6 +73,7 @@ import {StudentProfileComponent} from './student/student-profile/student-profile
     HttpClientModule,
     MatButtonModule,
     MatCheckboxModule,
+    MatChipsModule,
     MatDatepickerModule,
     MatDialogModule,
     MatDividerModule,
