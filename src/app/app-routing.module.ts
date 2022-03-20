@@ -6,6 +6,7 @@ import {ManageFacultyComponent} from './admin/manage-faculty/manage-faculty.comp
 import {ManageStudentComponent} from './admin/manage-student/manage-student.component';
 import {FacultyLayoutComponent} from './faculty/faculty-layout.component';
 import {FacultyProfileComponent} from './faculty/faculty-profile/faculty-profile.component';
+import {UploadGradeComponent} from './faculty/upload-grade/upload-grade.component';
 import {ForgotPasswordComponent} from './forgot-password/forgot-password.component';
 import {LoginComponent} from './login/login.component';
 import {PlacementLayoutComponent} from './placement/placement-layout.component';
@@ -70,6 +71,10 @@ const routes: Routes = [
       {
         path: 'profile',
         component: FacultyProfileComponent
+      },
+      {
+        path: 'upload-grade',
+        component: UploadGradeComponent
       },
     ]
   },

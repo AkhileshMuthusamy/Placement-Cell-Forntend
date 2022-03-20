@@ -48,6 +48,7 @@ import {HttpInterceptorService} from './shared/services/http-interceptor.service
 import {EditStudentProfileComponent} from './student/edit-student-profile/edit-student-profile.component';
 import {StudentLayoutComponent} from './student/student-layout.component';
 import {StudentProfileComponent} from './student/student-profile/student-profile.component';
+import { UploadGradeComponent } from './faculty/upload-grade/upload-grade.component';
 
 
 @NgModule({
@@ -72,6 +73,7 @@ import {StudentProfileComponent} from './student/student-profile/student-profile
     EditPlacementProfileComponent,
     EditFacultyProfileComponent,
     EditAdminProfileComponent,
+    UploadGradeComponent,
   ],
   imports: [
     AppRoutingModule,
