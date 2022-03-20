@@ -42,6 +42,7 @@ import {PlacementLayoutComponent} from './placement/placement-layout.component';
 import {PlacementProfileComponent} from './placement/placement-profile/placement-profile.component';
 import {ResetPasswordComponent} from './reset-password/reset-password.component';
 import {HttpInterceptorService} from './shared/services/http-interceptor.service';
+import {EditStudentProfileComponent} from './student/edit-student-profile/edit-student-profile.component';
 import {StudentLayoutComponent} from './student/student-layout.component';
 import {StudentProfileComponent} from './student/student-profile/student-profile.component';
 
@@ -64,6 +65,7 @@ import {StudentProfileComponent} from './student/student-profile/student-profile
     PlacementProfileComponent,
     StudentProfileComponent,
     ManageStudentComponent,
+    EditStudentProfileComponent,
   ],
   imports: [
     AppRoutingModule,

@@ -28,4 +28,8 @@ export class ApiService {
   getProfile(): Observable<APIResponse<User>> {
     return this.http.get<APIResponse<User>>(`${this.apiURL}profile`)
   }
+
+  updateProfile(data: User): Observable<APIResponse<any>> {
+    return this.http.put<any>(`${this.apiURL}profile`, data);
+  }
 }

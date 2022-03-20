@@ -1,0 +1,93 @@
+<h2 mat-dialog-title>Edit Profile</h2>
+<mat-divider></mat-divider>
+<mat-dialog-content class="p-3">
+    <form [formGroup]="profileForm" class="w-100">
+        <mat-form-field appearance="fill" class="w-100">
+            <mat-label>First Name</mat-label>
+            <input matInput type="text" formControlName="firstName" />
+            <mat-error *ngIf="f['firstName'].invalid && (f['firstName'].dirty || f['firstName'].touched || submitted)">
+                Required
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="w-100">
+            <mat-label>Last Name</mat-label>
+            <input matInput type="text" formControlName="lastName" />
+            <mat-error *ngIf="f['lastName'].invalid && (f['lastName'].dirty || f['lastName'].touched || submitted)">
+                Required
+            </mat-error>
+        </mat-form-field>
+
+        <div fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="space-between center">
+
+            <mat-form-field fxFlex appearance="fill" class="w-100">
+                <mat-label>User ID</mat-label>
+                <input matInput type="text" formControlName="id" readonly/>
+                <mat-error *ngIf="f['id'].invalid && (f['id'].dirty || f['id'].touched || submitted)">
+                    Required
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field fxFlex appearance="fill" class="w-100">
+                <mat-label>Mobile</mat-label>
+                <input matInput type="tel" formControlName="phone" />
+                <mat-error *ngIf="f['phone'].invalid && (f['phone'].dirty || f['phone'].touched || submitted)">
+                    Required
+                </mat-error>
+            </mat-form-field>
+
+
+        </div>
+
+        <mat-form-field appearance="fill" class="w-100">
+            <mat-label>Email</mat-label>
+            <input matInput type="email" formControlName="email" />
+            <mat-error *ngIf="f['email'].errors?.['required'] && (f['email'].dirty || f['email'].touched || submitted)">
+                Required
+            </mat-error>
+            <mat-error *ngIf="f['email'].errors?.['email'] && (f['email'].dirty || f['email'].touched || submitted)">
+                Invalid email
+            </mat-error>
+        </mat-form-field>
+        
+        <div fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="space-between center">
+
+            <mat-form-field fxFlex appearance="fill">
+                <mat-label>Gender</mat-label>
+                <mat-select formControlName="gender" name="gender">
+                    <mat-option value="MALE">Male</mat-option>
+                    <mat-option value="FEMALE">Female</mat-option>
+                    <mat-option value="OTHER">Other</mat-option>
+                  </mat-select>
+                <mat-error *ngIf="f['gender'].invalid && (f['gender'].dirty || f['gender'].touched || submitted)">
+                    Required
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field fxFlex color="accent" appearance="fill" class="m-0">
+                <mat-label>Date of Birth</mat-label>
+                <input matInput [matDatepicker]="dob" formControlName="dateOfBirth"/>
+                <mat-datepicker-toggle matSuffix [for]="dob"></mat-datepicker-toggle>
+                <mat-datepicker #dob></mat-datepicker>
+                <mat-error *ngIf="f['dateOfBirth'].invalid && (f['dateOfBirth'].dirty || f['dateOfBirth'].touched || submitted)">
+                    Invalid value
+                </mat-error>
+            </mat-form-field>
+            <div  >
+
+            </div>
+
+        </div>
+    </form>
+</mat-dialog-content>
+<mat-divider></mat-divider>
+<mat-dialog-actions align="end">
+    <button mat-raised-button mat-dialog-close>Cancel</button>
+    <button class="ml-3" (click)="onSubmit()" [disabled]="isLoading" mat-raised-button
+        color="primary">
+        <mat-icon *ngIf="isLoading">
+            <mat-spinner color="primary" diameter="20"></mat-spinner>
+        </mat-icon>
+        Submit
+    </button>
+</mat-dialog-actions>
