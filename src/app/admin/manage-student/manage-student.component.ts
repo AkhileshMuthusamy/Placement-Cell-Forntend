@@ -16,7 +16,7 @@ import {RegisterUserComponent} from '../register-user/register-user.component';
 export class ManageStudentComponent implements OnInit, AfterViewInit {
 
   isLoading = false;
-  displayedColumns: string[] = ['id', 'firstName', 'lastName', 'dateOfBirth', 'email', 'gender', 'phone', 'disabled'];
+  displayedColumns: string[] = ['id', 'firstName', 'lastName', 'dateOfBirth', 'email', 'gender', 'phone', 'disabled', 'actions'];
   dataSource = new MatTableDataSource<User>([]);
   isListLoading = false;
   totalLength = 0;

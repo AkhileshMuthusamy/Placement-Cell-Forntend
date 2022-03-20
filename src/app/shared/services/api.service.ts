@@ -29,7 +29,7 @@ export class ApiService {
     return this.http.put<any>(`${this.apiURL}profile`, data);
   }
 
-  fetchUserList(role: [string]): Observable<APIResponse<Array<User>>> {
+  fetchUserList(role: Array<string>): Observable<APIResponse<Array<User>>> {
     return this.http.post<APIResponse<Array<User>>>(`${this.apiURL}list-user`, {role});
   }
 }
