@@ -2,7 +2,7 @@
     <h1 class="m-0">Upload Semester Mark</h1>
     <hr />
 </div>
-<div class="upload-file-container" [ngClass]="{'disable-div': (progress > 0) }"
+<div class="upload-file-container" [ngClass]="{'disable-div': (isVerifying) }"
     (click)="fileInput.value = ''; fileInput.click()" appDragDrop (whenFileDropped)="fileChangeEvent($event)"
     fxLayout="column" fxLayoutAlign="center center">
     <mat-icon aria-label="upload">cloud_upload</mat-icon>
@@ -46,10 +46,11 @@
 
 <div style="padding-right: 10%;">
     <div fxLayout="row" fxLayoutAlign="end center">
-      <button mat-raised-button [disabled]="((progress > 0) || (selectedFile === undefined))" aria-label="Upload File" class="mb-3" color="primary" (click)="uploadMark()">
+      <button mat-raised-button [disabled]="(isVerifying || (selectedFile === undefined))" aria-label="Upload File" class="mb-3" color="primary" (click)="uploadMark()">
         <mat-icon>file_upload</mat-icon>
-        <span *ngIf="progress == 0">Upload</span>
-        <span *ngIf="progress > 0">Uploading...</span>
+        <span *ngIf="!isVerifying && !isLoading">Submit</span>
+        <span *ngIf="isVerifying">Verifying</span>
+        <span *ngIf="isLoading">Uploading...</span>
       </button>
     </div>
 </div>

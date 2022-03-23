@@ -27,7 +27,7 @@ export class UploadGradeComponent implements OnInit {
     'application/vnd.ms-excel',
   ];
 
-  progress = 0;
+  isVerifying = false;
   showFileList = false;
   selectedFile!: File | undefined;
   isLoading = false;
@@ -64,10 +64,41 @@ export class UploadGradeComponent implements OnInit {
   }
 
 
-  async downloadExcelFile(objects: any, schema: any, filename: string): Promise<void> {
-    await writeXlsxFile(objects, {
-      schema,
-      fileName: filename + '.xlsx'
+  async downloadExcelFile(): Promise<void> {
+    let dt = new Date()
+    let filename = dt.toISOString().split('T')[0]
+
+    const columns: any = [];
+
+    const data: Array<any> = [];
+    data.push(this.headerRow.map((header) => {
+      return {
+        value: header,
+        fontWeight: 'bold'
+      };
+    }));
+
+    for (let studentMark of this.studentMarks) {
+
+      const obj: any = []
+      obj.push({'value': studentMark.id});
+      obj.push({'value': studentMark.name});
+      studentMark.marks.forEach((mark) => {
+        obj.push({'value': mark.mark});
+      });
+      studentMark.previousGpa.forEach((gpa, index) => {
+        obj.push({'value': gpa});
+      });
+      obj.push({'value': studentMark.sgpa});
+      obj.push({'value': studentMark.cgpa});
+
+      data.push(obj);
+    }
+
+    console.log(data);
+
+    await writeXlsxFile(data, {
+      fileName: 'MarkSheet' + filename + '.xlsx'
     });
   }
 
@@ -177,50 +208,43 @@ export class UploadGradeComponent implements OnInit {
   uploadMark(): void {
 
     if (this.selectedFile) {
-
-      const objects = [
-        // Object #1
-        {
-          name: 'John Smith',
-          dateOfBirth: new Date(),
-        },
-        // Object #2
-        {
-          name: 'Alice Brown',
-          dateOfBirth: new Date(),
-        }
-      ]
-      const schema = [
-        // Column #1
-        {
-          column: 'Name',
-          type: String,
-          value: (student: any) => student.name
-        },
-        // Column #2
-        {
-          column: 'Date of Birth',
-          type: Date,
-          format: 'mm/dd/yyyy',
-          value: (student: any) => student.dateOfBirth
-        },
-      ]
-
+      this.isVerifying = true;
       const studentIds = this.studentMarks.map(student => student.id);
       
       this.api.verifyStudentID(studentIds).subscribe({
         next: (response) => {
+          this.isVerifying = false;
           if (!response.error) {
             const missingIds = studentIds.filter(studentId => !response.data.includes(studentId));
-            this.snackBar.open('Invalid student id\'s: ' + missingIds.join(', '), 'Close', {
-              duration: 10000,
-            })
+
+            if (missingIds.length > 0) {
+              this.snackBar.open('Invalid student id\'s: ' + missingIds.join(', '), 'Close', {
+                duration: 10000,
+              });
+            } else {
+              this.isLoading = true;
+              this.api.uploadStudentMark(this.studentMarks).subscribe({
+                next: (response) => {
+                  this.isLoading = false;
+                  if (!response.error) {
+                    this.downloadExcelFile();
+                    this.resetState();
+                  }
+                },
+                error: () => {
+                  this.resetState();
+                  this.snackBar.open('Error while uploading file', 'Close', {
+                    duration: 5000,
+                  });
+                }
+              });
+            }
           }
         },
         error: () => {
           this.resetState();
-          this.snackBar.open('Error while uploading file', 'Close', {
-            duration: 2000,
+          this.snackBar.open('Error while verifying student id', 'Close', {
+            duration: 5000,
           });
         }
       });
@@ -228,6 +252,8 @@ export class UploadGradeComponent implements OnInit {
   }
 
   resetState(): void {
+    this.isVerifying = false;
+    this.isLoading = false;
     this.showFileList = false;
     this.selectedFile = undefined;
     this.studentMarks = []
