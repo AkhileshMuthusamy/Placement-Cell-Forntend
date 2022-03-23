@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {MatDialog} from '@angular/material/dialog';
 import {Subscription} from 'rxjs';
 import {User} from 'src/app/shared/objects/global-objects';
+import {ApiService} from 'src/app/shared/services/api.service';
 import {DataService} from 'src/app/shared/services/data.service';
 import {EditStudentProfileComponent} from '../edit-student-profile/edit-student-profile.component';
 

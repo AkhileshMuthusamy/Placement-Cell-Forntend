@@ -13,6 +13,7 @@ import {PlacementLayoutComponent} from './placement/placement-layout.component';
 import {PlacementProfileComponent} from './placement/placement-profile/placement-profile.component';
 import {ResetPasswordComponent} from './reset-password/reset-password.component';
 import {AuthGuardService} from './shared/services/auth-guard.service';
+import {StudentGradeComponent} from './student/student-grade/student-grade.component';
 import {StudentLayoutComponent} from './student/student-layout.component';
 import {StudentProfileComponent} from './student/student-profile/student-profile.component';
 
@@ -107,6 +108,10 @@ const routes: Routes = [
       {
         path: 'profile',
         component: StudentProfileComponent
+      },
+      {
+        path: 'grade',
+        component: StudentGradeComponent
       },
     ]
   },

@@ -25,6 +25,10 @@ export class ApiService {
     return this.http.get<APIResponse<User>>(`${this.apiURL}profile`)
   }
 
+  getStudentGrade(): Observable<APIResponse<any>> {
+    return this.http.get<APIResponse<any>>(`${this.apiURL}student-grade`)
+  }
+
   updateProfile(data: User): Observable<APIResponse<any>> {
     return this.http.put<any>(`${this.apiURL}profile`, data);
   }
