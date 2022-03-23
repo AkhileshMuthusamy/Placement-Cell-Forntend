@@ -34,6 +34,9 @@
                 <ng-container *ngFor="let mark of std.marks">
                     <td>{{mark.mark}}</td>
                 </ng-container>
+                <ng-container *ngFor="let mark of std.previousGpa">
+                    <td>{{mark}}</td>
+                </ng-container>
                 <td>{{std.sgpa}}</td>
                 <td>{{std.cgpa}}</td>
             </tr>

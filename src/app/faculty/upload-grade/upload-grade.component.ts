@@ -1,16 +1,16 @@
-import {HttpEvent, HttpEventType} from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
-import {FormGroup} from '@angular/forms';
+import {Component, OnInit} from '@angular/core';
 import {MatSnackBar} from '@angular/material/snack-bar';
+import readXlsxFile from 'read-excel-file';
 import {ApiService} from 'src/app/shared/services/api.service';
-import readXlsxFile from 'read-excel-file'
-import writeXlsxFile from 'write-excel-file'
+import writeXlsxFile from 'write-excel-file';
 
 export interface StudentGrade {
   id: string;
   name: string;
   semester: number;
   marks: Array<any>;
+  previousGpa: Array<number>;
+  previousGpaHeader: Array<string>;
   sgpa: number;
   cgpa: number;
 }
@@ -93,7 +93,9 @@ export class UploadGradeComponent implements OnInit {
               semester: 0,
               marks: [],
               sgpa: 0,
-              cgpa: 0
+              cgpa: 0,
+              previousGpa: [],
+              previousGpaHeader: []
             }
             obj['id'] = row[0].toString();
             obj['name'] = row[1].toString();
@@ -107,6 +109,11 @@ export class UploadGradeComponent implements OnInit {
               individualSubjectMark.mark = parseFloat(mark.toString());
               total += parseFloat(mark.toString());
               obj['marks'].push({...individualSubjectMark});
+            }
+
+            obj['previousGpaHeader'] = this.headerRow.slice(numberOfSubjects + subjectStartIndex);
+            for (let mark of row.slice(numberOfSubjects + subjectStartIndex)) {
+              obj['previousGpa'].push(parseFloat(mark.toString()));
             }
 
             obj['sgpa'] = +((total / numberOfSubjects) / 9.5).toFixed(2)
