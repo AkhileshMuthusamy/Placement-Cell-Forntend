@@ -30,8 +30,10 @@ export class EditStudentProfileComponent implements OnInit {
     dialogRef.disableClose = true;
     this.createForm();
     this.profileForm.patchValue(data);
-    for (const skill of data?.skills) {
-      this.skills.add(skill);
+    if (data?.skills) {
+      for (const skill of data?.skills) {
+        this.skills.add(skill);
+      }
     }
   }
 
