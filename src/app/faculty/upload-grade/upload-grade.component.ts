@@ -205,19 +205,26 @@ export class UploadGradeComponent implements OnInit {
           value: (student: any) => student.dateOfBirth
         },
       ]
-    }
 
-    this.api.verifyStudentID(['F001', 'S003', 'S2']).subscribe({
-      next: (response) => {
-        
-      },
-      error: () => {
-        this.resetState();
-        this.snackBar.open('Error while uploading file', 'Close', {
-          duration: 2000,
-        });
-      }
-    });
+      const studentIds = this.studentMarks.map(student => student.id);
+      
+      this.api.verifyStudentID(studentIds).subscribe({
+        next: (response) => {
+          if (!response.error) {
+            const missingIds = studentIds.filter(studentId => !response.data.includes(studentId));
+            this.snackBar.open('Invalid student id\'s: ' + missingIds.join(', '), 'Close', {
+              duration: 10000,
+            })
+          }
+        },
+        error: () => {
+          this.resetState();
+          this.snackBar.open('Error while uploading file', 'Close', {
+            duration: 2000,
+          });
+        }
+      });
+    }
   }
 
   resetState(): void {
