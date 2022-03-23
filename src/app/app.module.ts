@@ -54,6 +54,7 @@ import {EditStudentProfileComponent} from './student/edit-student-profile/edit-s
 import {StudentLayoutComponent} from './student/student-layout.component';
 import {StudentProfileComponent} from './student/student-profile/student-profile.component';
 import { StudentGradeComponent } from './student/student-grade/student-grade.component';
+import {MatExpansionModule} from '@angular/material/expansion';
 
 
 @NgModule({
@@ -97,6 +98,7 @@ import { StudentGradeComponent } from './student/student-grade/student-grade.com
     MatDatepickerModule,
     MatDialogModule,
     MatDividerModule,
+    MatExpansionModule,
     MatFormFieldModule,
     MatIconModule,
     MatInputModule,

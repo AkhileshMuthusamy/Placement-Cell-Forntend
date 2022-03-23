@@ -1,3 +1,27 @@
-<pre>
-    {{studentMarks | json}}
-</pre>
+<div class="m-3">
+    <h1 class="m-0">Academic Grade</h1>
+    <hr /> 
+</div>
+
+<div class="m-3">
+    <mat-accordion multi >
+        <mat-expansion-panel *ngFor="let studentMark of studentMarks">
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    Semester {{studentMark.semester}}
+                </mat-panel-title>
+                <mat-panel-description>
+                    SGPA: {{studentMark.sgpa}} | CGPA: {{studentMark.cgpa}}
+                </mat-panel-description>
+            </mat-expansion-panel-header>
+
+            <div>
+                <div *ngFor="let mark of studentMark?.marks" fxLayout="row" fxLayoutGap="15px" class="w-100 mb-2">
+                    <div fxFlex="200px">{{mark?.subject}}</div>
+                    <span fxFlex="5px">:</span>
+                    <div fxFlex>{{mark?.mark}}</div>
+                </div>
+            </div>
+        </mat-expansion-panel>
+    </mat-accordion>
+</div>
