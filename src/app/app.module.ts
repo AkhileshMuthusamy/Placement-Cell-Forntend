@@ -3,6 +3,7 @@ import {NgModule} from '@angular/core';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import {ReactiveFormsModule} from '@angular/forms';
 import {MatButtonModule} from '@angular/material/button';
+import {MatCardModule} from '@angular/material/card';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatChipsModule} from '@angular/material/chips';
 import {MatNativeDateModule} from '@angular/material/core';
@@ -29,6 +30,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {AdminLayoutComponent} from './admin/admin-layout.component';
 import {AdminProfileComponent} from './admin/admin-profile/admin-profile.component';
 import {EditAdminProfileComponent} from './admin/edit-admin-profile/edit-admin-profile.component';
+import {EditUserComponent} from './admin/edit-user/edit-user.component';
 import {ManageFacultyComponent} from './admin/manage-faculty/manage-faculty.component';
 import {ManageStudentComponent} from './admin/manage-student/manage-student.component';
 import {RegisterUserComponent} from './admin/register-user/register-user.component';
@@ -38,20 +40,19 @@ import {ChangePasswordComponent} from './change-password/change-password.compone
 import {EditFacultyProfileComponent} from './faculty/edit-faculty-profile/edit-faculty-profile.component';
 import {FacultyLayoutComponent} from './faculty/faculty-layout.component';
 import {FacultyProfileComponent} from './faculty/faculty-profile/faculty-profile.component';
+import {UploadGradeComponent} from './faculty/upload-grade/upload-grade.component';
 import {ForgotPasswordComponent} from './forgot-password/forgot-password.component';
 import {LoginComponent} from './login/login.component';
 import {EditPlacementProfileComponent} from './placement/edit-placement-profile/edit-placement-profile.component';
 import {PlacementLayoutComponent} from './placement/placement-layout.component';
 import {PlacementProfileComponent} from './placement/placement-profile/placement-profile.component';
 import {ResetPasswordComponent} from './reset-password/reset-password.component';
+import {DragDropDirective} from './shared/directives/drag-drop.directive';
+import {LoaderDirective} from './shared/directives/loader.directive';
 import {HttpInterceptorService} from './shared/services/http-interceptor.service';
 import {EditStudentProfileComponent} from './student/edit-student-profile/edit-student-profile.component';
 import {StudentLayoutComponent} from './student/student-layout.component';
 import {StudentProfileComponent} from './student/student-profile/student-profile.component';
-import { UploadGradeComponent } from './faculty/upload-grade/upload-grade.component';
-import {LoaderDirective} from './shared/directives/loader.directive';
-import {MatCardModule} from '@angular/material/card';
-import { EditUserComponent } from './admin/edit-user/edit-user.component';
 
 
 @NgModule({
@@ -78,6 +79,7 @@ import { EditUserComponent } from './admin/edit-user/edit-user.component';
     EditAdminProfileComponent,
     UploadGradeComponent,
     LoaderDirective,
+    DragDropDirective,
     EditUserComponent
   ],
   imports: [

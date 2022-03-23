@@ -1,0 +1,48 @@
+$primary: #154c79;
+
+.upload-file-container {
+  background-repeat: no-repeat;
+  background-size: 100px;
+  background-position: center;
+  height: 100px;
+  width: 80%;
+  margin: 20px auto;
+  border: 2px dashed $primary;
+  border-radius: 10px;
+  font-size: large;
+  font-weight: 500;
+}
+
+.upload-file-container:hover {
+  cursor: pointer;
+  background-color: #93c9b3 !important;
+  opacity: 0.8;
+}
+
+.files-list {
+  width: 80%;
+  margin: 20px auto;
+  background: #ffffff;
+  border: 2px dashed $primary;
+  border-radius: 10px;
+  // padding: 5px;
+  color: $primary;
+
+  p {
+    margin: 2px 0;
+  }
+}
+
+.files-list .delete-file {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+.files-list .delete-file img{
+  width:30px;
+}
+
+.disable-div {
+  pointer-events:none;
+
+}

@@ -41,5 +41,12 @@ export class ApiService {
     return this.http.put<APIResponse<any>>(`${this.apiURL}disable-user`, {ids});
   }
 
+  uploadStudentMark(data: any): Observable<APIResponse<any>> {
+    return this.http.post<any>(`${this.apiURL}upload-grade`, data);
+  }
+
+  verifyStudentID(data: Array<string>): Observable<APIResponse<any>> {
+    return this.http.post<any>(`${this.apiURL}upload-grade/verify`, {ids: data});
+  }
 
 }
