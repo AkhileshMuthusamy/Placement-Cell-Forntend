@@ -33,7 +33,8 @@ export class UploadGradeComponent implements OnInit {
   isLoading = false;
   hideDragNDrop = true;
 
-  studentMarks: Array<StudentGrade> = []
+  studentMarks: Array<StudentGrade> = [];
+  headerRow: Array<string> = [];
   
   constructor(
     private api: ApiService,
@@ -44,6 +45,7 @@ export class UploadGradeComponent implements OnInit {
   }
 
   fileChangeEvent(event: any): void {
+    this.resetState();
     if (event instanceof DragEvent) {
       this.selectedFile = event.dataTransfer?.files[0];
     } else {
@@ -73,18 +75,13 @@ export class UploadGradeComponent implements OnInit {
     if (this.selectedFile) {
       
       readXlsxFile(this.selectedFile).then((rows) => {
-        console.log(rows)
         if (rows.length > 1) {
-          let headerRow = rows[0];
+          this.headerRow = rows[0].map(_ => _.toString()); // <== Converting type Cell to Array
           const subjectStartIndex = 2;
-          let subjectEndIndex = this.getSubjectEndIndex(headerRow);
-          const semester = this.getSemester(headerRow);
-          
+          let subjectEndIndex = this.getSubjectEndIndex(this.headerRow);
+          const semester = this.getSemester(this.headerRow);
 
-          let subjects: Array<string> = []
-          for (let subject of headerRow.slice(subjectStartIndex, subjectEndIndex)) {
-            subjects.push(subject.toString());
-          }
+          let subjects = this.headerRow.slice(subjectStartIndex, subjectEndIndex)
           console.log(subjects);
 
 
@@ -101,6 +98,7 @@ export class UploadGradeComponent implements OnInit {
             obj['id'] = row[0].toString();
             obj['name'] = row[1].toString();
             obj['semester'] = semester;
+
             let total = 0
             const numberOfSubjects = row.slice(subjectStartIndex, subjectEndIndex).length;
             for (let [index, mark] of row.slice(subjectStartIndex, subjectEndIndex).entries()) {
@@ -110,14 +108,16 @@ export class UploadGradeComponent implements OnInit {
               total += parseFloat(mark.toString());
               obj['marks'].push({...individualSubjectMark});
             }
-            // obj['total'] = total;
+
             obj['sgpa'] = +((total / numberOfSubjects) / 9.5).toFixed(2)
-            obj['cgpa'] = this.getCgpa(headerRow, row, obj['sgpa']);
-            console.log(obj);
+            obj['cgpa'] = this.getCgpa(this.headerRow, row, obj['sgpa']);
             this.studentMarks.push(obj);
           }
           console.log(this.studentMarks);
+
+          this.headerRow.push(...[`SGPA Sem-${semester}`, `CGPA Sem-${semester}`])
         }
+
       });
     }
   }

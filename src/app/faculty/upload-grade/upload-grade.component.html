@@ -2,15 +2,15 @@
     <h1 class="m-0">Upload Semester Mark</h1>
     <hr />
 </div>
-  <div class="upload-file-container" [ngClass]="{'disable-div': (progress > 0) }"
+<div class="upload-file-container" [ngClass]="{'disable-div': (progress > 0) }"
     (click)="fileInput.value = ''; fileInput.click()" appDragDrop (whenFileDropped)="fileChangeEvent($event)"
     fxLayout="column" fxLayoutAlign="center center">
     <mat-icon aria-label="upload">cloud_upload</mat-icon>
     <p>Drop your file here or click to add file</p>
     <input hidden type="file" #fileInput [accept]="validFileTypes.join(',')" (change)="fileChangeEvent($event)" />
-  </div>
+</div>
   <!-- <p *ngIf="progress > 0" class="font-italic m-0">Uploading...</p> -->
-  <div class="files-list" *ngIf="(selectedFile !== undefined) && showFileList" fxLayout="row" fxLayoutAlign="space-between center">
+<div class="files-list" *ngIf="(selectedFile !== undefined) && showFileList" fxLayout="row" fxLayoutAlign="space-between center">
     <div fxLayout="row" fxLayoutAlign="start center" class="pl-2">
       <mat-icon aria-label="file">description</mat-icon>
       <p class="p-2"> {{ selectedFile.name }} </p>
@@ -18,9 +18,30 @@
     <button mat-icon-button matTooltip="Click to delete" class="" color="warn" (click)="selectedFile = undefined">
       <mat-icon aria-label="delete">delete_outline</mat-icon>
     </button>
-  </div>
+</div>
 
-  <div style="padding-right: 10%;">
+<div *ngIf="selectedFile !== undefined" class="p-3">
+    <table class="table">
+        <thead>
+            <tr>
+                <th *ngFor="let col of headerRow">{{col}}</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let std of studentMarks">
+                <td>{{std.id}}</td>
+                <td>{{std.name}}</td>
+                <ng-container *ngFor="let mark of std.marks">
+                    <td>{{mark.mark}}</td>
+                </ng-container>
+                <td>{{std.sgpa}}</td>
+                <td>{{std.cgpa}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<div style="padding-right: 10%;">
     <div fxLayout="row" fxLayoutAlign="end center">
       <button mat-raised-button [disabled]="((progress > 0) || (selectedFile === undefined))" aria-label="Upload File" class="mb-3" color="primary" (click)="uploadMark()">
         <mat-icon>file_upload</mat-icon>
@@ -28,5 +49,5 @@
         <span *ngIf="progress > 0">Uploading...</span>
       </button>
     </div>
-  </div>
+</div>
   
