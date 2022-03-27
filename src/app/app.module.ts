@@ -63,6 +63,7 @@ import {
   NgxMatDatetimePickerModule,
   NgxMatNativeDateModule,
 } from '@angular-material-components/datetime-picker';
+import { NgxEditorModule } from 'ngx-editor';
 
 
 
@@ -130,7 +131,8 @@ import {
     MatTooltipModule,
     ReactiveFormsModule,
     NgxMatDatetimePickerModule,
-    NgxMatNativeDateModule
+    NgxMatNativeDateModule,
+    NgxEditorModule
   ],
   providers: [
     {

@@ -14,10 +14,12 @@ import {AddEditEventComponent} from '../add-edit-event/add-edit-event.component'
 export class ManageEventComponent implements OnInit {
 
   isLoading = false;
-  displayedColumns: string[] = ['date', 'title', 'actions'];
+  displayedColumns: string[] = ['date', 'title', 'minCgpa', 'status', 'actions'];
   dataSource = new MatTableDataSource<any>([]);
   isListLoading = false;
   totalLength = 0;
+
+  currentDate = new Date();
 
   @ViewChild(MatPaginator)
   paginator!: MatPaginator;
@@ -56,7 +58,7 @@ export class ManageEventComponent implements OnInit {
   addEvent(): void {
     const dialogRef = this.dialog.open(AddEditEventComponent, {
       width: '550px',
-      data: {type: 'STUDENT', mode: 'ADD'}
+      data: {formData: {}, mode: 'ADD'}
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -77,6 +79,10 @@ export class ManageEventComponent implements OnInit {
         this.loadList();
       }
     });
+  }
+
+  getDate(dt: string) {
+    return new Date(dt);
   }
 
 }

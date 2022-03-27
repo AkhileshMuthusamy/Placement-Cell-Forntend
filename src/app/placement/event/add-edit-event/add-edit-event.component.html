@@ -10,26 +10,57 @@
             </mat-error>
         </mat-form-field>
 
-        <mat-form-field appearance="fill" class="w-100">
-            <mat-label>Body</mat-label>
-            <textarea matInput type="text" formControlName="body"></textarea>
-            <mat-error *ngIf="f['body'].invalid && (f['body'].dirty || f['body'].touched || submitted)">
-                Required
-            </mat-error>
-        </mat-form-field>
+        <div class="NgxEditor_Wrapper mb-3">
+            <ngx-editor-menu [editor]="editor" [toolbar]="toolbar">
+            </ngx-editor-menu>
+            <ngx-editor [editor]="editor" formControlName="body">
+            </ngx-editor>
+            <div class="text-danger" *ngIf="f['body'].invalid && (f['body'].dirty || f['body'].touched || submitted)">
+                * Required
+            </div>
+        </div>
 
-        <mat-form-field>
-            <input matInput [ngxMatDatetimePicker]="picker" placeholder="Choose a date" formControlName="date" [min]="minDate">
+        <mat-form-field appearance="fill" class="w-100">
+            <mat-label>Event Date</mat-label>
+            <input matInput [ngxMatDatetimePicker]="picker" placeholder="Choose a date" formControlName="date" [min]="minDate" />
             <mat-datepicker-toggle matSuffix [for]="$any(picker)"></mat-datepicker-toggle>
             <ngx-mat-datetime-picker #picker [showSpinners]="true" [showSeconds]="false"
                [stepHour]="1" [stepMinute]="10" [stepSecond]="1"
                [touchUi]="false" [enableMeridian]="true" 
                [disableMinute]="false" [hideTime]="false">
             </ngx-mat-datetime-picker>
-            <mat-error *ngIf="f['date'].invalid && (f['date'].dirty || f['date'].touched || submitted)">
+            <mat-error *ngIf="f['date'].errors?.['required'] && (f['date'].dirty || f['date'].touched || submitted)">
                 Required
             </mat-error>
-         </mat-form-field>
+            <mat-error *ngIf="f['date'].errors?.['matDatetimePickerMin'] && (f['date'].dirty || f['date'].touched || submitted)">
+                Invalid date
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field *ngIf="picker.valid" appearance="fill" class="w-100">
+            <mat-label>Reminder Notification</mat-label>
+            <input matInput [ngxMatDatetimePicker]="remindAtPicker" placeholder="Choose a date" formControlName="remindAt" [min]="minDate" />
+            <mat-datepicker-toggle matSuffix [for]="$any(remindAtPicker)"></mat-datepicker-toggle>
+            <ngx-mat-datetime-picker #remindAtPicker [showSpinners]="true" [showSeconds]="false"
+               [stepHour]="1" [stepMinute]="10" [stepSecond]="1"
+               [touchUi]="false" [enableMeridian]="true" 
+               [disableMinute]="false" [hideTime]="false">
+            </ngx-mat-datetime-picker>
+            <mat-error *ngIf="f['remindAt'].errors?.['required'] && (f['remindAt'].dirty || f['remindAt'].touched || submitted)">
+                Required
+            </mat-error>
+            <mat-error *ngIf="f['remindAt'].errors?.['matDatetimePickerMin'] && (f['remindAt'].dirty || f['remindAt'].touched || submitted)">
+                Invalid date
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="w-100">
+            <mat-label>Minimum CGPA</mat-label>
+            <input matInput type="number" formControlName="minCgpa" />
+            <mat-error *ngIf="f['minCgpa'].invalid && (f['minCgpa'].dirty || f['minCgpa'].touched || submitted)">
+                Required
+            </mat-error>
+        </mat-form-field>
 
     </form>
 </mat-dialog-content>
