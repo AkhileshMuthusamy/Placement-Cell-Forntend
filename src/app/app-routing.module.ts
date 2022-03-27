@@ -4,6 +4,7 @@ import {AdminLayoutComponent} from './admin/admin-layout.component';
 import {AdminProfileComponent} from './admin/admin-profile/admin-profile.component';
 import {ManageFacultyComponent} from './admin/manage-faculty/manage-faculty.component';
 import {ManageStudentComponent} from './admin/manage-student/manage-student.component';
+import {FacultyActivityComponent} from './faculty/faculty-activity/faculty-activity.component';
 import {FacultyLayoutComponent} from './faculty/faculty-layout.component';
 import {FacultyProfileComponent} from './faculty/faculty-profile/faculty-profile.component';
 import {UploadGradeComponent} from './faculty/upload-grade/upload-grade.component';
@@ -76,6 +77,10 @@ const routes: Routes = [
       {
         path: 'upload-grade',
         component: UploadGradeComponent
+      },
+      {
+        path: 'activity',
+        component: FacultyActivityComponent
       },
     ]
   },

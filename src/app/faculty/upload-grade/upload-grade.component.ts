@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import readXlsxFile from 'read-excel-file';
 import {ApiService} from 'src/app/shared/services/api.service';
+import {AuthService} from 'src/app/shared/services/auth.service';
 import writeXlsxFile from 'write-excel-file';
 
 export interface StudentGrade {
@@ -13,6 +14,7 @@ export interface StudentGrade {
   previousGpaHeader: Array<string>;
   sgpa: number;
   cgpa: number;
+  uploadedBy: string;
 }
 
 @Component({
@@ -38,6 +40,7 @@ export class UploadGradeComponent implements OnInit {
   
   constructor(
     private api: ApiService,
+    private authService: AuthService,
     private snackBar: MatSnackBar,
   ) { }
 
@@ -111,7 +114,6 @@ export class UploadGradeComponent implements OnInit {
           const subjectStartIndex = 2;
           let subjectEndIndex = this.getSubjectEndIndex(this.headerRow);
           const semester = this.getSemester(this.headerRow);
-
           let subjects = this.headerRow.slice(subjectStartIndex, subjectEndIndex)
           console.log(subjects);
 
@@ -126,11 +128,13 @@ export class UploadGradeComponent implements OnInit {
               sgpa: 0,
               cgpa: 0,
               previousGpa: [],
-              previousGpaHeader: []
+              previousGpaHeader: [],
+              uploadedBy: '',
             }
             obj['id'] = row[0].toString();
             obj['name'] = row[1].toString();
             obj['semester'] = semester;
+            obj['uploadedBy'] = this.authService.getUserProfile().id;
 
             let total = 0
             const numberOfSubjects = row.slice(subjectStartIndex, subjectEndIndex).length;

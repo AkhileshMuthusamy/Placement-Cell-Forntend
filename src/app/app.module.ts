@@ -55,6 +55,9 @@ import {StudentLayoutComponent} from './student/student-layout.component';
 import {StudentProfileComponent} from './student/student-profile/student-profile.component';
 import { StudentGradeComponent } from './student/student-grade/student-grade.component';
 import {MatExpansionModule} from '@angular/material/expansion';
+import { FacultyActivityComponent } from './faculty/faculty-activity/faculty-activity.component';
+import { OrderByPipe } from './shared/pipes/order-by.pipe';
+
 
 
 @NgModule({
@@ -83,7 +86,9 @@ import {MatExpansionModule} from '@angular/material/expansion';
     LoaderDirective,
     DragDropDirective,
     EditUserComponent,
-    StudentGradeComponent
+    StudentGradeComponent,
+    FacultyActivityComponent,
+    OrderByPipe,
   ],
   imports: [
     AppRoutingModule,

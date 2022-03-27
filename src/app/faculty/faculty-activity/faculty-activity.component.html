@@ -1,0 +1,9 @@
+
+<div class="m-3">
+    <mat-card fxLayout="row" fxLayoutAlign="space-between center" *ngFor="let activity of activities" class="m-3">
+        <span>Uploaded mark at {{activity | date:'medium'}}</span>
+        <button class="ml-3" (click)="deleteGrade(activity)" [disabled]="isLoading" mat-raised-button color="warn">
+        Delete Uploaded Mark
+    </button>
+    </mat-card>
+</div>

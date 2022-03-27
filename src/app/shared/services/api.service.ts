@@ -53,4 +53,12 @@ export class ApiService {
     return this.http.post<any>(`${this.apiURL}upload-grade/verify`, {ids: data});
   }
 
+  getPastMarkUpload(): Observable<APIResponse<any>> {
+    return this.http.get<APIResponse<any>>(`${this.apiURL}list-grade-upload`)
+  }
+
+  deletePastMarkUpload(uploadedAt: string): Observable<APIResponse<any>> {
+    return this.http.post<APIResponse<any>>(`${this.apiURL}delete-grade`, {uploadedAt})
+  }
+
 }

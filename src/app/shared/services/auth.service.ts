@@ -24,11 +24,11 @@ export class AuthService {
   ) { }
 
   public getToken(): string {
-    return localStorage.getItem(this.USER_TOKEN) || '';
+    return sessionStorage.getItem(this.USER_TOKEN) || '';
   }
 
   hasUser(): boolean {
-    return !!localStorage.getItem(this.USER_TOKEN);
+    return !!sessionStorage.getItem(this.USER_TOKEN);
   }
 
   public isUserLoggedIn(): boolean {
@@ -47,7 +47,7 @@ export class AuthService {
   }
 
   getUserProfile(): any {
-    let profile = JSON.parse(localStorage.getItem(this.USER_PROFILE) || '{}')
+    let profile = JSON.parse(sessionStorage.getItem(this.USER_PROFILE) || '{}')
     return profile;
   }
 
@@ -84,20 +84,20 @@ export class AuthService {
   }
 
   storeUserInfo(data: {token: string; profile: any;}): void {
-    localStorage.setItem(this.USER_TOKEN, data.token);
-    localStorage.setItem(this.USER_PROFILE, JSON.stringify(data.profile));
+    sessionStorage.setItem(this.USER_TOKEN, data.token);
+    sessionStorage.setItem(this.USER_PROFILE, JSON.stringify(data.profile));
   }
 
   logout(): void {
-    localStorage.removeItem(this.USER_TOKEN);
-    localStorage.removeItem(this.USER_PROFILE);
+    sessionStorage.removeItem(this.USER_TOKEN);
+    sessionStorage.removeItem(this.USER_PROFILE);
     this.isLoginSubject.next(false);
     this.snackBar.open('Token expired. Please login again.', 'Close', {duration: 2000});
     this.router.navigate(['/login']).then(() => {});
   }
 
   navigateUserHome(): void {
-    let profile = JSON.parse(localStorage.getItem(this.USER_PROFILE) || '{}')
+    let profile = JSON.parse(sessionStorage.getItem(this.USER_PROFILE) || '{}')
     if (profile?.role === 'ADMIN') {
       this.router.navigate(['/admin']).then(() => {});
     } else if (profile?.role === 'FACULTY') {
@@ -110,8 +110,8 @@ export class AuthService {
   }
 
   public logoutAndNavigate(): void {
-    localStorage.removeItem(this.USER_TOKEN);
-    localStorage.removeItem(this.USER_PROFILE);
+    sessionStorage.removeItem(this.USER_TOKEN);
+    sessionStorage.removeItem(this.USER_PROFILE);
     this.router.navigate(['/login']).then(() => {});
     this.isLoginSubject.next(false);
   }
