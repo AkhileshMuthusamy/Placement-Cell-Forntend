@@ -61,4 +61,17 @@ export class ApiService {
     return this.http.post<APIResponse<any>>(`${this.apiURL}delete-grade`, {uploadedAt})
   }
 
+  fetchEventList(): Observable<APIResponse<Array<any>>> {
+    return this.http.get<APIResponse<Array<any>>>(`${this.apiURL}event/list`);
+  }
+
+  addEvent(data: any): Observable<APIResponse<any>> {
+    return this.http.post<any>(`${this.apiURL}event`, data);
+  }
+
+  editEvent(data: any): Observable<APIResponse<any>> {
+    return this.http.put<any>(`${this.apiURL}event`, data);
+  }
+
+
 }

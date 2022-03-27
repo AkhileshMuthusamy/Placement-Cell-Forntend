@@ -10,6 +10,7 @@ import {MatNativeDateModule} from '@angular/material/core';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatDividerModule} from '@angular/material/divider';
+import {MatExpansionModule} from '@angular/material/expansion';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatIconModule} from '@angular/material/icon';
 import {MatInputModule} from '@angular/material/input';
@@ -38,25 +39,30 @@ import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {ChangePasswordComponent} from './change-password/change-password.component';
 import {EditFacultyProfileComponent} from './faculty/edit-faculty-profile/edit-faculty-profile.component';
+import {FacultyActivityComponent} from './faculty/faculty-activity/faculty-activity.component';
 import {FacultyLayoutComponent} from './faculty/faculty-layout.component';
 import {FacultyProfileComponent} from './faculty/faculty-profile/faculty-profile.component';
 import {UploadGradeComponent} from './faculty/upload-grade/upload-grade.component';
 import {ForgotPasswordComponent} from './forgot-password/forgot-password.component';
 import {LoginComponent} from './login/login.component';
 import {EditPlacementProfileComponent} from './placement/edit-placement-profile/edit-placement-profile.component';
+import {AddEditEventComponent} from './placement/event/add-edit-event/add-edit-event.component';
+import {ManageEventComponent} from './placement/event/manage-event/manage-event.component';
 import {PlacementLayoutComponent} from './placement/placement-layout.component';
 import {PlacementProfileComponent} from './placement/placement-profile/placement-profile.component';
 import {ResetPasswordComponent} from './reset-password/reset-password.component';
 import {DragDropDirective} from './shared/directives/drag-drop.directive';
 import {LoaderDirective} from './shared/directives/loader.directive';
+import {OrderByPipe} from './shared/pipes/order-by.pipe';
 import {HttpInterceptorService} from './shared/services/http-interceptor.service';
 import {EditStudentProfileComponent} from './student/edit-student-profile/edit-student-profile.component';
+import {StudentGradeComponent} from './student/student-grade/student-grade.component';
 import {StudentLayoutComponent} from './student/student-layout.component';
 import {StudentProfileComponent} from './student/student-profile/student-profile.component';
-import { StudentGradeComponent } from './student/student-grade/student-grade.component';
-import {MatExpansionModule} from '@angular/material/expansion';
-import { FacultyActivityComponent } from './faculty/faculty-activity/faculty-activity.component';
-import { OrderByPipe } from './shared/pipes/order-by.pipe';
+import {
+  NgxMatDatetimePickerModule,
+  NgxMatNativeDateModule,
+} from '@angular-material-components/datetime-picker';
 
 
 
@@ -89,6 +95,8 @@ import { OrderByPipe } from './shared/pipes/order-by.pipe';
     StudentGradeComponent,
     FacultyActivityComponent,
     OrderByPipe,
+    ManageEventComponent,
+    AddEditEventComponent,
   ],
   imports: [
     AppRoutingModule,
@@ -121,6 +129,8 @@ import { OrderByPipe } from './shared/pipes/order-by.pipe';
     MatToolbarModule,
     MatTooltipModule,
     ReactiveFormsModule,
+    NgxMatDatetimePickerModule,
+    NgxMatNativeDateModule
   ],
   providers: [
     {

@@ -1,0 +1,82 @@
+import {Component, OnInit, ViewChild} from '@angular/core';
+import {MatDialog} from '@angular/material/dialog';
+import {MatPaginator} from '@angular/material/paginator';
+import {MatTableDataSource} from '@angular/material/table';
+import {APIResponse} from 'src/app/shared/objects/api-response';
+import {ApiService} from 'src/app/shared/services/api.service';
+import {AddEditEventComponent} from '../add-edit-event/add-edit-event.component';
+
+@Component({
+  selector: 'app-manage-event',
+  templateUrl: './manage-event.component.html',
+  styleUrls: ['./manage-event.component.scss']
+})
+export class ManageEventComponent implements OnInit {
+
+  isLoading = false;
+  displayedColumns: string[] = ['date', 'title', 'actions'];
+  dataSource = new MatTableDataSource<any>([]);
+  isListLoading = false;
+  totalLength = 0;
+
+  @ViewChild(MatPaginator)
+  paginator!: MatPaginator;
+  
+  constructor(
+    public dialog: MatDialog,
+    public api: ApiService
+  ) { }
+
+  ngOnInit(): void {
+    this.loadList();
+  }
+
+  ngAfterViewInit(): void {
+    this.dataSource.paginator = this.paginator;
+  }
+
+  loadList(): void {
+    this.isListLoading = true;
+    this.api.fetchEventList().subscribe({
+      next: (res: APIResponse<Array<any>>) => {
+        if (!res.error) {
+          this.dataSource.data = res.data;
+          this.totalLength = res.data.length;
+        }
+      },
+      complete: () => {
+        this.isListLoading = false;
+      },
+      error: () => {
+        this.isListLoading = false;
+      }
+    });
+  }
+
+  addEvent(): void {
+    const dialogRef = this.dialog.open(AddEditEventComponent, {
+      width: '550px',
+      data: {type: 'STUDENT', mode: 'ADD'}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result === 'SUCCESS') {
+        this.loadList();
+      }
+    });
+  }
+
+  openEditEventDialog(row: any): void {
+    const dialogRef = this.dialog.open(AddEditEventComponent, {
+      width: '550px',
+      data: {formData: row, mode: 'EDIT'}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result === 'SUCCESS') {
+        this.loadList();
+      }
+    });
+  }
+
+}

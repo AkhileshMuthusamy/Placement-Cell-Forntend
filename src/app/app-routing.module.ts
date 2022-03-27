@@ -10,6 +10,7 @@ import {FacultyProfileComponent} from './faculty/faculty-profile/faculty-profile
 import {UploadGradeComponent} from './faculty/upload-grade/upload-grade.component';
 import {ForgotPasswordComponent} from './forgot-password/forgot-password.component';
 import {LoginComponent} from './login/login.component';
+import {ManageEventComponent} from './placement/event/manage-event/manage-event.component';
 import {PlacementLayoutComponent} from './placement/placement-layout.component';
 import {PlacementProfileComponent} from './placement/placement-profile/placement-profile.component';
 import {ResetPasswordComponent} from './reset-password/reset-password.component';
@@ -97,6 +98,10 @@ const routes: Routes = [
       {
         path: 'profile',
         component: PlacementProfileComponent
+      },
+      {
+        path: 'event',
+        component: ManageEventComponent
       },
     ]
   },
