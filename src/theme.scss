@@ -1,0 +1,80 @@
+@import '~@angular/material/theming';
+@include mat-core();
+
+$primary: #154c79;
+$secondary: #5d6a68;
+$accent: #2dc73c;
+// Generated from http://mcg.mbitson.com/
+
+$md-primary: (
+    50 : #e3e9ee,
+    100 : #b9c8d5,
+    200 : #8aa4ba,
+    300 : #5b809e,
+    400 : #386489,
+    500 : #154974,
+    600 : #12426c,
+    700 : #0f3961,
+    800 : #0c3157,
+    900 : #062144,
+    A100 : #7aabff,
+    A200 : #478bff,
+    A400 : #146bff,
+    A700 : #005cf9,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #ffffff,
+        400 : #ffffff,
+        500 : #ffffff,
+        600 : #ffffff,
+        700 : #ffffff,
+        800 : #ffffff,
+        900 : #ffffff,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #ffffff,
+        A700 : #ffffff,
+    )
+);
+
+$md-accent: (
+    50 : #f2f8ef,
+    100 : #dfedd8,
+    200 : #c9e2be,
+    300 : #b3d6a4,
+    400 : #a3cd91,
+    500 : #93c47d,
+    600 : #8bbe75,
+    700 : #80b66a,
+    800 : #76af60,
+    900 : #64a24d,
+    A100 : #ffffff,
+    A200 : #daffcd,
+    A400 : #b4ff9a,
+    A700 : #a1ff80,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #000000,
+        400 : #000000,
+        500 : #000000,
+        600 : #000000,
+        700 : #000000,
+        800 : #000000,
+        900 : #000000,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #000000,
+        A700 : #000000,
+    )
+);
+
+
+$my-app-primary: mat-palette($md-primary);
+$my-app-accent:  mat-palette($md-accent);
+$my-app-warn:    mat-palette($mat-deep-orange);
+$my-app-theme: mat-light-theme($my-app-primary, $my-app-accent, $my-app-warn);
+@include angular-material-theme($my-app-theme);
