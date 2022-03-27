@@ -66,11 +66,15 @@ export class ApiService {
   }
 
   addEvent(data: any): Observable<APIResponse<any>> {
-    return this.http.post<any>(`${this.apiURL}event`, data);
+    return this.http.post<APIResponse<any>>(`${this.apiURL}event`, data);
   }
 
   editEvent(data: any): Observable<APIResponse<any>> {
-    return this.http.put<any>(`${this.apiURL}event`, data);
+    return this.http.put<APIResponse<any>>(`${this.apiURL}event`, data);
+  }
+
+  deleteEvent(_id: string): Observable<APIResponse<any>> {
+    return this.http.delete<APIResponse<any>>(`${this.apiURL}event?_id=${_id}`);
   }
 
 

@@ -81,6 +81,19 @@ export class ManageEventComponent implements OnInit {
     });
   }
 
+  deleteEvent(row: any): void {
+    this.api.deleteEvent(row._id).subscribe({
+      next: (res) => {
+        if (!res.error) {
+          this.loadList();
+        }
+      },
+      error: (err) => {
+
+      }
+    })
+  }
+
   getDate(dt: string) {
     return new Date(dt);
   }
