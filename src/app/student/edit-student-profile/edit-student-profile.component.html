@@ -97,6 +97,14 @@
             </mat-chip-list>
         </mat-form-field>
 
+        <mat-form-field appearance="fill" class="w-100">
+            <mat-label>Address</mat-label>
+            <textarea matInput type="text" formControlName="address"></textarea>
+            <mat-error *ngIf="f['address'].invalid && (f['address'].dirty || f['address'].touched || submitted)">
+                Required
+            </mat-error>
+        </mat-form-field>
+
     </form>
 </mat-dialog-content>
 <mat-divider></mat-divider>

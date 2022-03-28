@@ -49,7 +49,8 @@ export class EditStudentProfileComponent implements OnInit {
       phone: [''],
       gender: ['', Validators.required],
       dateOfBirth: [null],
-      skills: []
+      skills: [],
+      address: ['']
     });
 
   }

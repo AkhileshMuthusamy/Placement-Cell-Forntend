@@ -42,7 +42,8 @@ export class EditAdminProfileComponent implements OnInit {
       phone: [''],
       gender: ['', Validators.required],
       dateOfBirth: [null],
-      skills: []
+      skills: [],
+      address: ['']
     });
 
   }
