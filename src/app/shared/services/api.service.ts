@@ -77,5 +77,17 @@ export class ApiService {
     return this.http.delete<APIResponse<any>>(`${this.apiURL}event?_id=${_id}`);
   }
 
+  getSkillList(): Observable<APIResponse<Array<string>>> {
+    return this.http.get<APIResponse<Array<string>>>(`${this.apiURL}skill`)
+  }
+
+  getDepartmentList(): Observable<APIResponse<Array<string>>> {
+    return this.http.get<APIResponse<Array<string>>>(`${this.apiURL}department`)
+  }
+
+  getBatchList(): Observable<APIResponse<Array<string>>> {
+    return this.http.get<APIResponse<Array<string>>>(`${this.apiURL}batch`)
+  }
+
 
 }

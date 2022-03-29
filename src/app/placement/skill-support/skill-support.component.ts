@@ -1,14 +1,20 @@
 import {SelectionModel} from '@angular/cdk/collections';
-import { Component, OnInit } from '@angular/core';
+import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {MatDialog} from '@angular/material/dialog';
+import {MatPaginator} from '@angular/material/paginator';
+import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
+import {APIResponse} from 'src/app/shared/objects/api-response';
 import {User} from 'src/app/shared/objects/global-objects';
+import {ApiService} from 'src/app/shared/services/api.service';
 
 @Component({
   selector: 'app-skill-support',
   templateUrl: './skill-support.component.html',
   styleUrls: ['./skill-support.component.scss']
 })
-export class SkillSupportComponent implements OnInit {
+export class SkillSupportComponent implements OnInit, AfterViewInit {
 
   isLoading = false;
   displayedColumns: string[] = ['select', 'id', 'firstName', 'lastName', 'email', 'gender', 'phone', 'skills'];
@@ -16,11 +22,49 @@ export class SkillSupportComponent implements OnInit {
   selection = new SelectionModel<User>(true, []);
   isListLoading = false;
   totalLength = 0
+
+  filterForm!: FormGroup;
+  submitted = false;
+
+  skills: Array<string> = [];
+  departments: Array<string> = [];
+  batches: Array<string> = [];
+
+  @ViewChild(MatPaginator)
+  paginator!: MatPaginator;
+  @ViewChild(MatSort)
+  sort!: MatSort;
   
-  constructor() { }
+  constructor(
+    private fb: FormBuilder,
+    private api: ApiService,
+    public dialog: MatDialog,
+  ) {
+    this.createForm();
+    this.loadSkillList();
+    this.loadDepartmentList();
+    this.loadBatchList();
+  }
 
   ngOnInit(): void {
   }
+
+  ngAfterViewInit(): void {
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
+  }
+
+  createForm(): void {
+    this.filterForm = this.fb.group({
+      skills: [undefined, Validators.required],
+      match: ['ANY'],
+      batch: [],
+      department: []
+    });
+
+  }
+
+  get f(): any { return this.filterForm.controls; }
 
   /** Whether the number of selected elements matches the total number of rows. */
   isAllSelected() {
@@ -37,6 +81,61 @@ export class SkillSupportComponent implements OnInit {
     }
 
     this.selection.select(...this.dataSource.data);
+  }
+
+  loadSkillList(): void {
+    this.isListLoading = true;
+    this.api.getSkillList().subscribe({
+      next: (res: APIResponse<Array<string>>) => {
+        if (!res.error) {
+          this.skills = res.data;
+        }
+      },
+      complete: () => {
+        this.isListLoading = false;
+      },
+      error: () => {
+        this.isListLoading = false;
+      }
+    });
+  }
+
+  loadDepartmentList(): void {
+    this.isListLoading = true;
+    this.api.getDepartmentList().subscribe({
+      next: (res: APIResponse<Array<string>>) => {
+        if (!res.error) {
+          this.departments = res.data;
+        }
+      },
+      complete: () => {
+        this.isListLoading = false;
+      },
+      error: () => {
+        this.isListLoading = false;
+      }
+    });
+  }
+
+  loadBatchList(): void {
+    this.isListLoading = true;
+    this.api.getBatchList().subscribe({
+      next: (res: APIResponse<Array<string>>) => {
+        if (!res.error) {
+          this.batches = res.data;
+        }
+      },
+      complete: () => {
+        this.isListLoading = false;
+      },
+      error: () => {
+        this.isListLoading = false;
+      }
+    });
+  }
+
+  filterStudent(): void {
+
   }
 
 }

@@ -5,7 +5,59 @@
                 <mat-icon class="me-2">filter_list</mat-icon>
                 Filter Students
             </ng-template>
-            
+
+            <form [formGroup]="filterForm" class="w-100">
+
+                <div fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="space-between start" class="m-3">
+
+                    <mat-form-field fxFlex appearance="fill">
+                        <mat-label>Skills</mat-label>
+                        <mat-select formControlName="skills" name="skills" multiple>
+                            <mat-option let *ngFor="let skill of skills" [value]="skill">{{skill}}</mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="f['skills'].invalid && (f['skills'].dirty || f['skills'].touched || submitted)">
+                            Required
+                        </mat-error>
+                    </mat-form-field>
+        
+
+                    <mat-button-toggle-group formControlName="match">
+                        <mat-button-toggle value="ANY"> Match Any </mat-button-toggle>
+                        <mat-button-toggle value="ALL"> Match All </mat-button-toggle>
+                    </mat-button-toggle-group>
+
+                    
+                </div>
+                <div fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="space-between start" class="m-3">
+                    <mat-form-field fxFlex appearance="fill">
+                        <mat-label>Batch</mat-label>
+                        <mat-select formControlName="batch" name="batch" multiple>
+                            <mat-option let *ngFor="let batch of batches" [value]="batch">{{batch}}</mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="f['batch'].invalid && (f['batch'].dirty || f['batch'].touched || submitted)">
+                            Required
+                        </mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field fxFlex appearance="fill">
+                        <mat-label>Department</mat-label>
+                        <mat-select formControlName="department" name="department" multiple>
+                            <mat-option let *ngFor="let department of departments" [value]="department">{{department}}</mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="f['department'].invalid && (f['department'].dirty || f['department'].touched || submitted)">
+                            Required
+                        </mat-error>
+                    </mat-form-field>
+
+                    <button class="ml-3" (click)="filterStudent()" [disabled]="isLoading" mat-raised-button color="primary">
+                        <mat-icon *ngIf="isLoading">
+                            <mat-spinner color="primary" diameter="20"></mat-spinner>
+                        </mat-icon>
+                        Submit
+                    </button>
+                </div>
+            </form>
+
             <table mat-table matSort [dataSource]="dataSource" class="w-100">
                 <!-- Checkbox Column -->
                 <ng-container matColumnDef="select">
@@ -65,7 +117,7 @@
                 <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
                 <tr mat-row *matRowDef="let row; columns: displayedColumns;" ></tr>
               </table>
-              <div class="text-center text-secondary" *ngIf="dataSource.data.length == 0">No Data Available</div>
+              <div class="text-center text-secondary pt-3 h5" *ngIf="dataSource.data.length == 0">No records to display</div>
           
               <div class="mat-table__bottom">
                 <mat-paginator [pageSize]="10" [pageSizeOptions]="[10, 25, 50]" [length]="totalLength" [showFirstLastButtons]="true"></mat-paginator>

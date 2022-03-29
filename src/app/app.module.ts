@@ -66,6 +66,7 @@ import {EditStudentProfileComponent} from './student/edit-student-profile/edit-s
 import {StudentGradeComponent} from './student/student-grade/student-grade.component';
 import {StudentLayoutComponent} from './student/student-layout.component';
 import {StudentProfileComponent} from './student/student-profile/student-profile.component';
+import {MatButtonToggleModule} from '@angular/material/button-toggle';
 
 
 
@@ -109,6 +110,7 @@ import {StudentProfileComponent} from './student/student-profile/student-profile
     FlexLayoutModule,
     HttpClientModule,
     MatButtonModule,
+    MatButtonToggleModule,
     MatCardModule,
     MatCheckboxModule,
     MatChipsModule,
