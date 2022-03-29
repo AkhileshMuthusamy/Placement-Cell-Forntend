@@ -1,3 +1,7 @@
+import {
+  NgxMatDatetimePickerModule,
+  NgxMatNativeDateModule
+} from '@angular-material-components/datetime-picker';
 import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
 import {NgModule} from '@angular/core';
 import {FlexLayoutModule} from '@angular/flex-layout';
@@ -24,10 +28,12 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatSortModule} from '@angular/material/sort';
 import {MatTableModule} from '@angular/material/table';
+import {MatTabsModule} from '@angular/material/tabs';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {BrowserModule} from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {NgxEditorModule} from 'ngx-editor';
 import {AdminLayoutComponent} from './admin/admin-layout.component';
 import {AdminProfileComponent} from './admin/admin-profile/admin-profile.component';
 import {EditAdminProfileComponent} from './admin/edit-admin-profile/edit-admin-profile.component';
@@ -50,6 +56,7 @@ import {AddEditEventComponent} from './placement/event/add-edit-event/add-edit-e
 import {ManageEventComponent} from './placement/event/manage-event/manage-event.component';
 import {PlacementLayoutComponent} from './placement/placement-layout.component';
 import {PlacementProfileComponent} from './placement/placement-profile/placement-profile.component';
+import {SkillSupportComponent} from './placement/skill-support/skill-support.component';
 import {ResetPasswordComponent} from './reset-password/reset-password.component';
 import {DragDropDirective} from './shared/directives/drag-drop.directive';
 import {LoaderDirective} from './shared/directives/loader.directive';
@@ -59,11 +66,6 @@ import {EditStudentProfileComponent} from './student/edit-student-profile/edit-s
 import {StudentGradeComponent} from './student/student-grade/student-grade.component';
 import {StudentLayoutComponent} from './student/student-layout.component';
 import {StudentProfileComponent} from './student/student-profile/student-profile.component';
-import {
-  NgxMatDatetimePickerModule,
-  NgxMatNativeDateModule,
-} from '@angular-material-components/datetime-picker';
-import { NgxEditorModule } from 'ngx-editor';
 
 
 
@@ -98,6 +100,7 @@ import { NgxEditorModule } from 'ngx-editor';
     OrderByPipe,
     ManageEventComponent,
     AddEditEventComponent,
+    SkillSupportComponent,
   ],
   imports: [
     AppRoutingModule,
@@ -127,12 +130,13 @@ import { NgxEditorModule } from 'ngx-editor';
     MatSnackBarModule,
     MatSortModule,
     MatTableModule,
+    MatTabsModule,
     MatToolbarModule,
     MatTooltipModule,
-    ReactiveFormsModule,
+    NgxEditorModule,
     NgxMatDatetimePickerModule,
     NgxMatNativeDateModule,
-    NgxEditorModule
+    ReactiveFormsModule,
   ],
   providers: [
     {

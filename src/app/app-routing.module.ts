@@ -13,6 +13,7 @@ import {LoginComponent} from './login/login.component';
 import {ManageEventComponent} from './placement/event/manage-event/manage-event.component';
 import {PlacementLayoutComponent} from './placement/placement-layout.component';
 import {PlacementProfileComponent} from './placement/placement-profile/placement-profile.component';
+import {SkillSupportComponent} from './placement/skill-support/skill-support.component';
 import {ResetPasswordComponent} from './reset-password/reset-password.component';
 import {AuthGuardService} from './shared/services/auth-guard.service';
 import {StudentGradeComponent} from './student/student-grade/student-grade.component';
@@ -102,6 +103,10 @@ const routes: Routes = [
       {
         path: 'event',
         component: ManageEventComponent
+      },
+      {
+        path: 'skill-support',
+        component: SkillSupportComponent
       },
     ]
   },

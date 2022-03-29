@@ -1,0 +1,84 @@
+<mat-card class="m-3">
+    <mat-tab-group mat-stretch-tabs color="accent">
+        <mat-tab>
+            <ng-template mat-tab-label>
+                <mat-icon class="me-2">filter_list</mat-icon>
+                Filter Students
+            </ng-template>
+            
+            <table mat-table matSort [dataSource]="dataSource" class="w-100">
+                <!-- Checkbox Column -->
+                <ng-container matColumnDef="select">
+                    <th mat-header-cell *matHeaderCellDef>
+                    <mat-checkbox (change)="$event ? masterToggle() : null"
+                                    [checked]="selection.hasValue() && isAllSelected()"
+                                    [indeterminate]="selection.hasValue() && !isAllSelected()">
+                    </mat-checkbox>
+                    </th>
+                    <td mat-cell *matCellDef="let row">
+                    <mat-checkbox (click)="$event.stopPropagation()"
+                                    (change)="$event ? selection.toggle(row) : null"
+                                    [checked]="selection.isSelected(row)">
+                    </mat-checkbox>
+                    </td>
+                </ng-container>
+  
+                <!-- ID Column -->
+                <ng-container matColumnDef="id">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header> Student ID </th>
+                  <td mat-cell *matCellDef="let element"> {{element?.id | uppercase}} </td>
+                </ng-container>
+          
+                <!-- First Name Column -->
+                <ng-container matColumnDef="firstName">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header> First Name </th>
+                  <td mat-cell *matCellDef="let element">{{element?.firstName}} </td>
+                </ng-container>
+                
+                <!-- Last Name Column -->
+                <ng-container matColumnDef="lastName">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header> Last Name </th>
+                  <td mat-cell *matCellDef="let element">{{element?.lastName}} </td>
+                </ng-container>
+                
+                <!-- Gender Column -->
+                <ng-container matColumnDef="gender">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header> Gender </th>
+                  <td mat-cell *matCellDef="let element">{{element?.gender | titlecase}} </td>
+                </ng-container>
+                <!-- Email Column -->
+                <ng-container matColumnDef="email">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header> Email </th>
+                  <td mat-cell *matCellDef="let element">{{element?.email}} </td>
+                </ng-container>
+                <!-- Phone Column -->
+                <ng-container matColumnDef="phone">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header> Phone </th>
+                  <td mat-cell *matCellDef="let element">{{element?.phone}} </td>
+                </ng-container>
+                <!-- Role Column -->
+                <ng-container matColumnDef="skills">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header> Skills </th>
+                  <td mat-cell *matCellDef="let element">{{element?.skills.join(', ')}} </td>
+                </ng-container>
+          
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;" ></tr>
+              </table>
+              <div class="text-center text-secondary" *ngIf="dataSource.data.length == 0">No Data Available</div>
+          
+              <div class="mat-table__bottom">
+                <mat-paginator [pageSize]="10" [pageSizeOptions]="[10, 25, 50]" [length]="totalLength" [showFirstLastButtons]="true"></mat-paginator>
+              </div>
+
+        </mat-tab>
+        <mat-tab label="History">
+            <ng-template mat-tab-label>
+                <mat-icon class="me-2">history</mat-icon>
+                History
+            </ng-template>
+            History
+        </mat-tab>
+    </mat-tab-group>
+    
+</mat-card>
