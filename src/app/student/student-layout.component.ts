@@ -4,6 +4,7 @@ import {MatDialog} from '@angular/material/dialog';
 import {Router} from '@angular/router';
 import {ChangePasswordComponent} from '../change-password/change-password.component';
 import {AuthService} from '../shared/services/auth.service';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-student-layout',
@@ -20,8 +21,10 @@ export class StudentLayoutComponent implements OnInit {
     public authService: AuthService,
     public dialog: MatDialog,
     public mediaObserver: MediaObserver,
-    private router: Router
+    private router: Router,
+    private title: Title
   ) {
+    this.title.setTitle('Student');
     this.profile = this.authService.getUserProfile();
 
     mediaObserver.asObservable().subscribe((mediaChange) => {

@@ -4,6 +4,8 @@ import {MatSnackBar} from '@angular/material/snack-bar';
 import {ActivatedRoute, Router} from '@angular/router';
 import {AuthService} from '../shared/services/auth.service';
 import {DataService} from '../shared/services/data.service';
+import { Title } from '@angular/platform-browser';
+
 
 @Component({
   selector: 'app-login',
@@ -25,10 +27,12 @@ export class LoginComponent implements OnInit {
     private snackBar: MatSnackBar,
     private router: Router,
     private authService: AuthService,
-    private dataService: DataService
+    private dataService: DataService,
+    private title: Title
   ) {
     this.createForm();
     this.authService.navigateUserHome();
+    this.title.setTitle('Login');
   }
 
   ngOnInit(): void {

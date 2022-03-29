@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {MediaObserver} from '@angular/flex-layout';
 import {MatDialog} from '@angular/material/dialog';
+import {Title} from '@angular/platform-browser';
 import {Router} from '@angular/router';
 import {ChangePasswordComponent} from '../change-password/change-password.component';
 import {AuthService} from '../shared/services/auth.service';
@@ -20,8 +21,11 @@ export class AdminLayoutComponent implements OnInit {
     public authService: AuthService,
     public dialog: MatDialog,
     public mediaObserver: MediaObserver,
-    private router: Router
+    private router: Router,
+    private title: Title
   ) {
+    this.title.setTitle('Admin');
+
     this.profile = this.authService.getUserProfile();
 
     mediaObserver.asObservable().subscribe((mediaChange) => {
