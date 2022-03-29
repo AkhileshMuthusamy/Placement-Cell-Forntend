@@ -73,9 +73,27 @@
                     Invalid value
                 </mat-error>
             </mat-form-field>
-            <div  >
 
-            </div>
+        </div>
+
+        <div *ngIf="data.type === 'STUDENT'" fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="space-between center">
+
+            <mat-form-field fxFlex appearance="fill" class="w-100">
+                <mat-label>Department</mat-label>
+                <input matInput type="text" formControlName="department" />
+                <mat-error *ngIf="f['department'].invalid && (f['department'].dirty || f['department'].touched || submitted)">
+                    Required
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field fxFlex appearance="fill" class="w-100">
+                <mat-label>Batch</mat-label>
+                <input matInput type="text" formControlName="batch" />
+                <mat-error *ngIf="f['batch'].invalid && (f['batch'].dirty || f['batch'].touched || submitted)">
+                    Required
+                </mat-error>
+            </mat-form-field>
+
 
         </div>
     </form>

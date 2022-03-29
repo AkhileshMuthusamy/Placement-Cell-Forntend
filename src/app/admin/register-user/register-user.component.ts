@@ -23,6 +23,11 @@ export class RegisterUserComponent implements OnInit {
     // Disabled dialog close when clicked outside
     dialogRef.disableClose = true;
     this.createForm();
+
+    if (this.data.type === 'STUDENT') {
+      this.registrationForm.controls['department'].setValidators(Validators.required);
+      this.registrationForm.controls['batch'].setValidators(Validators.required);
+    }
   }
 
   ngOnInit(): void {
@@ -38,7 +43,9 @@ export class RegisterUserComponent implements OnInit {
       phone: [''],
       gender: ['', Validators.required],
       dateOfBirth: [null],
-      skills: []
+      skills: [],
+      department: [],
+      batch: []
     });
 
   }

@@ -17,4 +17,6 @@ export interface User {
     'skills': Array<string>;
     'cgpa': number;
     'disabled': boolean;
+    'department': string;
+    'batch': string;
 }
