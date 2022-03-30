@@ -62,6 +62,29 @@
             </mat-error>
         </mat-form-field>
 
+        <div fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="space-between start">
+            <mat-form-field fxFlex appearance="fill">
+                <mat-label>Batch</mat-label>
+                <mat-select formControlName="batch" name="batch" multiple>
+                    <mat-option let *ngFor="let batch of batches" [value]="batch">{{batch}}</mat-option>
+                </mat-select>
+                <mat-error *ngIf="f['batch'].invalid && (f['batch'].dirty || f['batch'].touched || submitted)">
+                    Invalid
+                </mat-error>
+            </mat-form-field>
+    
+            <mat-form-field fxFlex appearance="fill">
+                <mat-label>Department</mat-label>
+                <mat-select formControlName="department" name="department" multiple>
+                    <mat-option let *ngFor="let department of departments" [value]="department">{{department}}</mat-option>
+                </mat-select>
+                <mat-error *ngIf="f['department'].invalid && (f['department'].dirty || f['department'].touched || submitted)">
+                    Invalid
+                </mat-error>
+            </mat-form-field>
+        </div>
+
+
     </form>
 </mat-dialog-content>
 <mat-divider></mat-divider>

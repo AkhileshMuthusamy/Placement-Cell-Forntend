@@ -15,7 +15,7 @@ import {AddEditEventComponent} from '../add-edit-event/add-edit-event.component'
 export class ManageEventComponent implements OnInit {
 
   isLoading = false;
-  displayedColumns: string[] = ['date', 'title', 'minCgpa', 'status', 'actions'];
+  displayedColumns: string[] = ['date', 'title', 'minCgpa', 'batch', 'department', 'status', 'actions'];
   dataSource = new MatTableDataSource<any>([]);
   isListLoading = false;
   totalLength = 0;

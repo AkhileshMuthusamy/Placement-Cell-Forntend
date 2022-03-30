@@ -19,6 +19,10 @@ export class AddEditEventComponent implements OnInit, OnDestroy {
   editor: Editor = new Editor();
   html = '';
 
+  isListLoading = false;
+  departments: Array<string> = [];
+  batches: Array<string> = [];
+
   toolbar: Toolbar = [
     ['bold', 'italic'],
     ['underline', 'strike'],
@@ -40,6 +44,9 @@ export class AddEditEventComponent implements OnInit, OnDestroy {
     dialogRef.disableClose = true;
     this.createForm();
     this.eventForm.patchValue(data.formData);
+
+    this.loadBatchList();
+    this.loadDepartmentList();
   }
 
   ngOnInit(): void {
@@ -57,11 +64,47 @@ export class AddEditEventComponent implements OnInit, OnDestroy {
       date: ['', Validators.required],
       minCgpa: [0, Validators.required],
       remindAt: [],
+      batch: [[]],
+      department: [[]]
     });
 
   }
 
   get f(): any { return this.eventForm.controls; }
+
+  loadDepartmentList(): void {
+    this.isListLoading = true;
+    this.api.getDepartmentList().subscribe({
+      next: (res: APIResponse<Array<string>>) => {
+        if (!res.error) {
+          this.departments = res.data;
+        }
+      },
+      complete: () => {
+        this.isListLoading = false;
+      },
+      error: () => {
+        this.isListLoading = false;
+      }
+    });
+  }
+
+  loadBatchList(): void {
+    this.isListLoading = true;
+    this.api.getBatchList().subscribe({
+      next: (res: APIResponse<Array<string>>) => {
+        if (!res.error) {
+          this.batches = res.data;
+        }
+      },
+      complete: () => {
+        this.isListLoading = false;
+      },
+      error: () => {
+        this.isListLoading = false;
+      }
+    });
+  }
 
   onSubmit(): void {
 
