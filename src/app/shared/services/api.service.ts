@@ -94,5 +94,9 @@ export class ApiService {
     return this.http.post<APIResponse<Array<User>>>(`${this.apiURL}skill/student`, data)
   }
 
+  sendSupportEmail(data: any): Observable<APIResponse<any>> {
+    return this.http.post<APIResponse<any>>(`${this.apiURL}skill/support`, data);
+  }
+
 
 }

@@ -61,7 +61,7 @@ export class ManageEventComponent implements OnInit {
 
   addEvent(): void {
     const dialogRef = this.dialog.open(AddEditEventComponent, {
-      width: '550px',
+      width: '570px',
       data: {formData: {}, mode: 'ADD'}
     });
 
@@ -74,7 +74,7 @@ export class ManageEventComponent implements OnInit {
 
   openEditEventDialog(row: any): void {
     const dialogRef = this.dialog.open(AddEditEventComponent, {
-      width: '550px',
+      width: '570px',
       data: {formData: row, mode: 'EDIT'}
     });
 

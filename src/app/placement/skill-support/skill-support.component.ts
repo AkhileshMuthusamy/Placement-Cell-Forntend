@@ -8,6 +8,7 @@ import {MatTableDataSource} from '@angular/material/table';
 import {APIResponse} from 'src/app/shared/objects/api-response';
 import {User} from 'src/app/shared/objects/global-objects';
 import {ApiService} from 'src/app/shared/services/api.service';
+import {SendEmailComponent} from './send-email/send-email.component';
 
 @Component({
   selector: 'app-skill-support',
@@ -156,6 +157,23 @@ export class SkillSupportComponent implements OnInit, AfterViewInit {
         }
       });
     }
+  }
+
+  openSendEmailDialog(): void {
+    
+    const dialogRef = this.dialog.open(SendEmailComponent, {
+      width: '570px',
+      data: {
+        ids: this.selection.selected.map(user => user.id),
+        emails: this.selection.selected.map(user => user.email),
+        ...this.filterForm.getRawValue()}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result == 'SUCCESS') {
+
+      }
+    });
   }
 
 }

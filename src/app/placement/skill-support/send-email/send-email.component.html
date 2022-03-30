@@ -1,0 +1,35 @@
+<h2 mat-dialog-title>Send Email </h2>
+<mat-divider></mat-divider>
+<mat-dialog-content class="p-3">
+    <form [formGroup]="supportForm" class="w-100">
+        <mat-form-field appearance="fill" class="w-100">
+            <mat-label>Subject</mat-label>
+            <input matInput type="text" formControlName="subject" />
+            <mat-error *ngIf="f['subject'].invalid && (f['subject'].dirty || f['subject'].touched || submitted)">
+                Required
+            </mat-error>
+        </mat-form-field>
+
+        <div class="NgxEditor_Wrapper mb-3">
+            <ngx-editor-menu [editor]="editor" [toolbar]="toolbar">
+            </ngx-editor-menu>
+            <ngx-editor [editor]="editor" formControlName="body">
+            </ngx-editor>
+            <div class="text-danger" *ngIf="f['body'].invalid && (f['body'].dirty || f['body'].touched || submitted)">
+                * Required
+            </div>
+        </div>
+
+    </form>
+</mat-dialog-content>
+<mat-divider></mat-divider>
+<mat-dialog-actions align="end">
+    <button mat-raised-button mat-dialog-close>Cancel</button>
+    <button class="ml-3" (click)="onSubmit()" [disabled]="isLoading" mat-raised-button color="primary">
+        <mat-icon *ngIf="isLoading">
+            <mat-spinner color="primary" diameter="20"></mat-spinner>
+        </mat-icon>
+        <mat-icon *ngIf="!isLoading" class="me-2">send</mat-icon>
+        Send
+    </button>
+</mat-dialog-actions>

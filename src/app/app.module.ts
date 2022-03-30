@@ -67,6 +67,7 @@ import {StudentGradeComponent} from './student/student-grade/student-grade.compo
 import {StudentLayoutComponent} from './student/student-layout.component';
 import {StudentProfileComponent} from './student/student-profile/student-profile.component';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
+import { SendEmailComponent } from './placement/skill-support/send-email/send-email.component';
 
 
 
@@ -102,6 +103,7 @@ import {MatButtonToggleModule} from '@angular/material/button-toggle';
     ManageEventComponent,
     AddEditEventComponent,
     SkillSupportComponent,
+    SendEmailComponent,
   ],
   imports: [
     AppRoutingModule,

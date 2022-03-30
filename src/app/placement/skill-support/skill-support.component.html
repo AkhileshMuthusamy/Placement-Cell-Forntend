@@ -133,9 +133,8 @@
                 </div>
 
                 <div fxLayout="row" fxLayoutAlign="end end" class="w-100">
-                    <button class="ml-3" (click)="filterStudent()" [disabled]="isLoading" mat-raised-button color="primary">
+                    <button class="ml-3" (click)="openSendEmailDialog()" [disabled]="isLoading || selection.selected.length <= 0" mat-raised-button color="primary">
                         <mat-icon *ngIf="isLoading">
-                            email
                             <mat-spinner color="primary" diameter="20"></mat-spinner>
                         </mat-icon>
                         <mat-icon *ngIf="!isLoading" class="me-2">email</mat-icon>
