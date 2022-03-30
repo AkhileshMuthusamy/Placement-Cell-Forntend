@@ -76,7 +76,7 @@ export class ManageStudentComponent implements OnInit, AfterViewInit {
   openEditUserDialog(row: any): void {
     const dialogRef = this.dialog.open(EditUserComponent, {
       width: '550px',
-      data: {formData: row, title: 'Student'}
+      data: {formData: row, title: 'Student', type: 'STUDENT'}
     });
 
     dialogRef.afterClosed().subscribe(result => {

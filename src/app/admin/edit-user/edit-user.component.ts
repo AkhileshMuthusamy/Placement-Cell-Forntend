@@ -22,12 +22,17 @@ export class EditUserComponent implements OnInit {
     private api: ApiService,
     private dataService: DataService,
     public dialogRef: MatDialogRef<EditUserComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: {formData: any, title: string},
+    @Inject(MAT_DIALOG_DATA) public data: {formData: any, title: string, type: string,},
   ) {
     // Disabled dialog close when clicked outside
     dialogRef.disableClose = true;
     this.createForm();
     this.userForm.patchValue(data.formData);
+
+    if (this.data.type === 'STUDENT') {
+      this.userForm.controls['department'].setValidators(Validators.required);
+      this.userForm.controls['batch'].setValidators(Validators.required);
+    }
   }
 
   ngOnInit(): void {
@@ -42,7 +47,9 @@ export class EditUserComponent implements OnInit {
       phone: [''],
       gender: ['', Validators.required],
       dateOfBirth: [null],
-      skills: []
+      skills: [],
+      department: [],
+      batch: []
     });
 
   }
