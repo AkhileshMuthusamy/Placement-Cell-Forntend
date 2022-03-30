@@ -24,6 +24,11 @@ export class SkillSupportComponent implements OnInit, AfterViewInit {
   isListLoading = false;
   totalLength = 0
 
+  supportDisplayedColumns: string[] = ['createdAt', 'subject', 'batch', 'department', 'cgpa', 'skills'];
+  supportDataSource = new MatTableDataSource<User>([]);
+  isSupportListLoading = false;
+  supportTotalLength = 0
+
   filterForm!: FormGroup;
   submitted = false;
 
@@ -35,6 +40,11 @@ export class SkillSupportComponent implements OnInit, AfterViewInit {
   paginator!: MatPaginator;
   @ViewChild(MatSort)
   sort!: MatSort;
+
+  @ViewChild('supportPaginator')
+  supportPaginator!: MatPaginator;
+  @ViewChild('supportTable', { read: MatSort, static: true })
+  supportSort!: MatSort;
   
   constructor(
     private fb: FormBuilder,
@@ -45,6 +55,7 @@ export class SkillSupportComponent implements OnInit, AfterViewInit {
     this.loadSkillList();
     this.loadDepartmentList();
     this.loadBatchList();
+    this.loadSupportList();
   }
 
   ngOnInit(): void {
@@ -53,6 +64,9 @@ export class SkillSupportComponent implements OnInit, AfterViewInit {
   ngAfterViewInit(): void {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
+
+    this.supportDataSource.paginator = this.supportPaginator;
+    this.supportDataSource.sort = this.supportSort;
   }
 
   createForm(): void {
@@ -136,6 +150,24 @@ export class SkillSupportComponent implements OnInit, AfterViewInit {
     });
   }
 
+  loadSupportList(): void {
+    this.isListLoading = true;
+    this.api.getSupportList().subscribe({
+      next: (res: APIResponse<Array<any>>) => {
+        if (!res.error) {
+          this.supportDataSource.data = res.data;
+          this.supportTotalLength = res.data.length;
+        }
+      },
+      complete: () => {
+        this.isListLoading = false;
+      },
+      error: () => {
+        this.isListLoading = false;
+      }
+    });
+  }
+
   filterStudent(): void {
     this.submitted = true;
     this.filterForm.markAllAsTouched();  // Mark all the field as touched to show errors.
@@ -171,7 +203,7 @@ export class SkillSupportComponent implements OnInit, AfterViewInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result == 'SUCCESS') {
-
+        this.loadSupportList();
       }
     });
   }

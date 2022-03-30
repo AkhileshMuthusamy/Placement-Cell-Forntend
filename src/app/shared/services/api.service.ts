@@ -89,6 +89,10 @@ export class ApiService {
     return this.http.get<APIResponse<Array<string>>>(`${this.apiURL}batch`)
   }
 
+  getSupportList(): Observable<APIResponse<Array<any>>> {
+    return this.http.get<APIResponse<Array<any>>>(`${this.apiURL}skill/support`)
+  }
+
 
   findStudentWithSkill(data: any): Observable<APIResponse<Array<User>>> {
     return this.http.post<APIResponse<Array<User>>>(`${this.apiURL}skill/student`, data)
