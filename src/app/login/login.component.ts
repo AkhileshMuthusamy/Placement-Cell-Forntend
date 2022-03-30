@@ -59,11 +59,15 @@ export class LoginComponent implements OnInit {
       this.authService.login(this.loginForm.getRawValue()).subscribe({
         next: (res: {error: any; data: any; message: any;}) => {
           if (!res.error) {
-            this.submitted = false;
-            this.authService.storeUserInfo(res.data);
-            this.authService.isLoginSubject.next(true);
-            this.dataService.loadProfile();
-            this.navigate(res.data);
+            if (res.data?.profile?.disabled) {
+              this.snackBar.open( 'You account has been disabled. Please contact Admin team.', 'Close', {duration: 5000});
+            } else {
+              this.submitted = false;
+              this.authService.storeUserInfo(res.data);
+              this.authService.isLoginSubject.next(true);
+              this.dataService.loadProfile();
+              this.navigate(res.data);
+            }
           } else {
             this.snackBar.open(res.message || 'Unable to login', 'Close', {duration: 2000});
           }
