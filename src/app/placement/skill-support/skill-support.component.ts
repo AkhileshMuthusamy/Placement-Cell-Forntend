@@ -58,8 +58,9 @@ export class SkillSupportComponent implements OnInit, AfterViewInit {
     this.filterForm = this.fb.group({
       skills: [undefined, Validators.required],
       match: ['ANY'],
-      batch: [],
-      department: []
+      cgpa: [],
+      batch: [[]],
+      department: [[]]
     });
 
   }
@@ -135,7 +136,26 @@ export class SkillSupportComponent implements OnInit, AfterViewInit {
   }
 
   filterStudent(): void {
+    this.submitted = true;
+    this.filterForm.markAllAsTouched();  // Mark all the field as touched to show errors.
+    if (this.filterForm.valid) {
+      this.isListLoading = true;
 
+      this.api.findStudentWithSkill(this.filterForm.getRawValue()).subscribe({
+        next: (res: APIResponse<Array<User>>) => {
+          if (!res.error) {
+            this.dataSource.data = res.data;
+            this.totalLength = res.data.length;
+          }
+        },
+        complete: () => {
+          this.isListLoading = false;
+        },
+        error: () => {
+          this.isListLoading = false;
+        }
+      });
+    }
   }
 
 }

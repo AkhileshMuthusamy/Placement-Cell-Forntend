@@ -90,4 +90,9 @@ export class ApiService {
   }
 
 
+  findStudentWithSkill(data: any): Observable<APIResponse<Array<User>>> {
+    return this.http.post<APIResponse<Array<User>>>(`${this.apiURL}skill/student`, data)
+  }
+
+
 }
