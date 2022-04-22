@@ -102,5 +102,16 @@ export class ApiService {
     return this.http.post<APIResponse<any>>(`${this.apiURL}skill/support`, data);
   }
 
+  uploadResume(data: FormData): Observable<APIResponse<any>> {
+    return this.http.post<APIResponse<any>>(`${this.apiURL}resume`, data);
+  }
+
+  downloadResume(id: string): any {
+    const httpOptions = {
+      responseType: 'blob' as 'json'
+    };
+
+    return this.http.get<any>(`${this.apiURL}resume?id=${id}`, httpOptions)
+  }
 
 }

@@ -19,4 +19,5 @@ export interface User {
     'disabled': boolean;
     'department': string;
     'batch': string;
+    'resume': string;
 }

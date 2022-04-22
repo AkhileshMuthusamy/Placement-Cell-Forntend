@@ -9,6 +9,7 @@ import {APIResponse} from 'src/app/shared/objects/api-response';
 import {User} from 'src/app/shared/objects/global-objects';
 import {ApiService} from 'src/app/shared/services/api.service';
 import {SendEmailComponent} from './send-email/send-email.component';
+import { saveAs } from 'file-saver';
 
 @Component({
   selector: 'app-skill-support',
@@ -18,7 +19,8 @@ import {SendEmailComponent} from './send-email/send-email.component';
 export class SkillSupportComponent implements OnInit, AfterViewInit {
 
   isLoading = false;
-  displayedColumns: string[] = ['select', 'id', 'firstName', 'lastName', 'email', 'gender', 'phone', 'skills'];
+  isDownloading = false;
+  displayedColumns: string[] = ['select', 'id', 'firstName', 'lastName', 'email', 'gender', 'phone', 'skills', 'resume'];
   dataSource = new MatTableDataSource<User>([]);
   selection = new SelectionModel<User>(true, []);
   isListLoading = false;
@@ -206,6 +208,17 @@ export class SkillSupportComponent implements OnInit, AfterViewInit {
         this.loadSupportList();
       }
     });
+  }
+
+
+  downloadResume(row: User): void {
+    this.isDownloading = true;
+
+    this.api.downloadResume(row.id).subscribe({
+      next: (res: string | Blob) => {
+        saveAs(res, row.resume);
+      }
+    })
   }
 
 }

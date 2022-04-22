@@ -122,6 +122,15 @@
                     <th mat-header-cell *matHeaderCellDef mat-sort-header> Skills </th>
                     <td mat-cell *matCellDef="let element">{{element?.skills.join(', ')}} </td>
                     </ng-container>
+                    <!-- Resume Column -->
+                    <ng-container matColumnDef="resume">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Resume </th>
+                        <td mat-cell *matCellDef="let element">
+                            <button *ngIf="element?.resume" mat-icon-button color="primary" aria-label="Download Resume" (click)="downloadResume(element)">
+                                <mat-icon>cloud_download</mat-icon>
+                            </button>
+                        </td>
+                    </ng-container>
             
                     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
                     <tr mat-row *matRowDef="let row; columns: displayedColumns;" ></tr>
