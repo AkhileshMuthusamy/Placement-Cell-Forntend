@@ -32,6 +32,7 @@ export class EditUserComponent implements OnInit {
     if (this.data.type === 'STUDENT') {
       this.userForm.controls['department'].setValidators(Validators.required);
       this.userForm.controls['batch'].setValidators(Validators.required);
+      this.userForm.controls['hsMark'].setValidators(Validators.required);
     }
   }
 
@@ -49,7 +50,8 @@ export class EditUserComponent implements OnInit {
       dateOfBirth: [null],
       skills: [],
       department: [],
-      batch: []
+      batch: [],
+      hsMark: [0]
     });
 
   }

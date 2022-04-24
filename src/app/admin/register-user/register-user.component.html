@@ -39,16 +39,29 @@
 
         </div>
 
-        <mat-form-field appearance="fill" class="w-100">
-            <mat-label>Email</mat-label>
-            <input matInput type="email" formControlName="email" />
-            <mat-error *ngIf="f['email'].errors?.['required'] && (f['email'].dirty || f['email'].touched || submitted)">
-                Required
-            </mat-error>
-            <mat-error *ngIf="f['email'].errors?.['email'] && (f['email'].dirty || f['email'].touched || submitted)">
-                Invalid email
-            </mat-error>
-        </mat-form-field>
+        <div fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="space-between center">
+            <mat-form-field fxFlex appearance="fill">
+                <mat-label>Email</mat-label>
+                <input matInput type="email" formControlName="email" />
+                <mat-error *ngIf="f['email'].errors?.['required'] && (f['email'].dirty || f['email'].touched || submitted)">
+                    Required
+                </mat-error>
+                <mat-error *ngIf="f['email'].errors?.['email'] && (f['email'].dirty || f['email'].touched || submitted)">
+                    Invalid email
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field fxFlex appearance="fill">
+                <mat-label>12th Mark Percentage</mat-label>
+                <input matInput type="number" formControlName="hsMark" min="0" max="100"/>
+                <mat-error *ngIf="f['hsMark'].errors?.['required'] && (f['hsMark'].dirty || f['hsMark'].touched || submitted)">
+                    Required
+                </mat-error>
+                <mat-error *ngIf="f['hsMark'].errors?.['hsMark'] && (f['hsMark'].dirty || f['hsMark'].touched || submitted)">
+                    Invalid value
+                </mat-error>
+            </mat-form-field>
+        </div>
         
         <div fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="space-between center">
 
