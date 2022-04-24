@@ -11,6 +11,7 @@ import {UploadGradeComponent} from './faculty/upload-grade/upload-grade.componen
 import {ForgotPasswordComponent} from './forgot-password/forgot-password.component';
 import {LoginComponent} from './login/login.component';
 import {ManageEventComponent} from './placement/event/manage-event/manage-event.component';
+import {ManageSkillComponent} from './placement/manage-skill/manage-skill.component';
 import {PlacementLayoutComponent} from './placement/placement-layout.component';
 import {PlacementProfileComponent} from './placement/placement-profile/placement-profile.component';
 import {SkillSupportComponent} from './placement/skill-support/skill-support.component';
@@ -107,6 +108,10 @@ const routes: Routes = [
       {
         path: 'skill-support',
         component: SkillSupportComponent
+      },
+      {
+        path: 'manage-skill',
+        component: ManageSkillComponent
       },
     ]
   },

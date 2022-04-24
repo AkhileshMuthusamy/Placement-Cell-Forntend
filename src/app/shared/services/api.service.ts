@@ -81,6 +81,18 @@ export class ApiService {
     return this.http.get<APIResponse<Array<string>>>(`${this.apiURL}skill`)
   }
 
+  fetchSkillList(): Observable<APIResponse<any>> {
+    return this.http.get<APIResponse<any>>(`${this.apiURL}skill/list`)
+  }
+
+  addSkill(newSkill: string): Observable<APIResponse<any>> {
+    return this.http.post<APIResponse<any>>(`${this.apiURL}skill/add`, {name: newSkill})
+  }
+
+  deleteSkill(_id: string): Observable<APIResponse<any>> {
+    return this.http.delete<APIResponse<any>>(`${this.apiURL}skill?_id=${_id}`)
+  }
+
   getDepartmentList(): Observable<APIResponse<Array<string>>> {
     return this.http.get<APIResponse<Array<string>>>(`${this.apiURL}department`)
   }

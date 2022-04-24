@@ -1,0 +1,19 @@
+<h2 mat-dialog-title>Add Skill </h2>
+<mat-divider></mat-divider>
+<mat-dialog-content class="p-3">
+    <mat-form-field appearance="outline" class="w-100">
+        <mat-label>New Skill</mat-label>
+        <input matInput [formControl]="newSkill" placeholder="New Skill" type="text">
+        <mat-error *ngIf="newSkill.invalid && (newSkill.dirty || newSkill.touched)">Required</mat-error>
+    </mat-form-field>
+</mat-dialog-content>
+<mat-divider></mat-divider>
+<mat-dialog-actions align="end">
+    <button mat-raised-button mat-dialog-close>Cancel</button>
+    <button class="ml-3" (click)="onSubmit()" [disabled]="isLoading" mat-raised-button color="primary">
+        <mat-icon *ngIf="isLoading">
+            <mat-spinner color="primary" diameter="20"></mat-spinner>
+        </mat-icon>
+        Submit
+    </button>
+</mat-dialog-actions>

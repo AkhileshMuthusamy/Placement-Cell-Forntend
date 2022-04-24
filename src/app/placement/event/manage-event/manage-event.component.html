@@ -7,9 +7,9 @@
         </button>
     </div>
     <hr />
-  </div>
+</div>
   
-  <div [appLoader]="isListLoading" class="m-3">
+<div [appLoader]="isListLoading" class="m-3">
     <mat-card>
         <table mat-table matSort [dataSource]="dataSource" class="w-100">
             <!-- Date Column -->
@@ -78,4 +78,4 @@
             <mat-paginator [pageSize]="10" [pageSizeOptions]="[10, 25, 50]" [length]="totalLength" [showFirstLastButtons]="true"></mat-paginator>
         </div>
     </mat-card>
-  </div>
+</div>

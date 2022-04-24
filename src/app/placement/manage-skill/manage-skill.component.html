@@ -1,0 +1,40 @@
+<div class="m-3">
+    <div fxLayout="row" fxLayoutAlign="space-between end">
+        <h1 class="m-0">Skills</h1>
+        <button mat-raised-button color="primary" class="" [disabled]="isLoading" (click)="addSkill()">
+            <mat-icon>add</mat-icon>
+            Add
+        </button>
+    </div>
+    <hr />
+</div>
+
+<div [appLoader]="isListLoading" class="m-3">
+    <mat-card>
+        <table mat-table matSort [dataSource]="dataSource" class="w-100">
+            <!-- Name Column -->
+            <ng-container matColumnDef="name">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Skill </th>
+                <td mat-cell *matCellDef="let element"> {{element?.name}} </td>
+            </ng-container>
+    
+            <!-- Action Column -->
+            <ng-container matColumnDef="actions">
+                <th mat-header-cell *matHeaderCellDef></th>
+                <td mat-cell *matCellDef="let element">
+                    <button mat-icon-button matTooltip="Click to Delete" class="" color="warn" (click)="deleteSkill(element)">
+                        <mat-icon aria-label="Delete">delete</mat-icon>
+                    </button>
+                </td>
+            </ng-container>
+  
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;" ></tr>
+        </table>
+        <div class="text-center text-secondary" *ngIf="dataSource.data.length == 0">No Data Available</div>
+    
+        <div class="mat-table__bottom">
+            <mat-paginator [pageSize]="10" [pageSizeOptions]="[10, 25, 50]" [length]="totalLength" [showFirstLastButtons]="true"></mat-paginator>
+        </div>
+    </mat-card>
+</div>
