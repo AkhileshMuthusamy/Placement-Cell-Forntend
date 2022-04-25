@@ -6,7 +6,9 @@ import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
 import {NgModule} from '@angular/core';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import {ReactiveFormsModule} from '@angular/forms';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatButtonModule} from '@angular/material/button';
+import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import {MatCardModule} from '@angular/material/card';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatChipsModule} from '@angular/material/chips';
@@ -54,8 +56,11 @@ import {LoginComponent} from './login/login.component';
 import {EditPlacementProfileComponent} from './placement/edit-placement-profile/edit-placement-profile.component';
 import {AddEditEventComponent} from './placement/event/add-edit-event/add-edit-event.component';
 import {ManageEventComponent} from './placement/event/manage-event/manage-event.component';
+import {AddSkillComponent} from './placement/manage-skill/add-skill/add-skill.component';
+import {ManageSkillComponent} from './placement/manage-skill/manage-skill.component';
 import {PlacementLayoutComponent} from './placement/placement-layout.component';
 import {PlacementProfileComponent} from './placement/placement-profile/placement-profile.component';
+import {SendEmailComponent} from './placement/skill-support/send-email/send-email.component';
 import {SkillSupportComponent} from './placement/skill-support/skill-support.component';
 import {ResetPasswordComponent} from './reset-password/reset-password.component';
 import {DragDropDirective} from './shared/directives/drag-drop.directive';
@@ -66,10 +71,6 @@ import {EditStudentProfileComponent} from './student/edit-student-profile/edit-s
 import {StudentGradeComponent} from './student/student-grade/student-grade.component';
 import {StudentLayoutComponent} from './student/student-layout.component';
 import {StudentProfileComponent} from './student/student-profile/student-profile.component';
-import {MatButtonToggleModule} from '@angular/material/button-toggle';
-import { SendEmailComponent } from './placement/skill-support/send-email/send-email.component';
-import { ManageSkillComponent } from './placement/manage-skill/manage-skill.component';
-import { AddSkillComponent } from './placement/manage-skill/add-skill/add-skill.component';
 
 
 
@@ -115,6 +116,7 @@ import { AddSkillComponent } from './placement/manage-skill/add-skill/add-skill.
     BrowserModule,
     FlexLayoutModule,
     HttpClientModule,
+    MatAutocompleteModule,
     MatButtonModule,
     MatButtonToggleModule,
     MatCardModule,

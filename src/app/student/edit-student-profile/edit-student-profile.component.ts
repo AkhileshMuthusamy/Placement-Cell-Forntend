@@ -1,7 +1,9 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {MatAutocompleteSelectedEvent} from '@angular/material/autocomplete';
 import {MatChipInputEvent} from '@angular/material/chips';
 import {MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import {map, Observable, of, startWith} from 'rxjs';
 import {APIResponse} from 'src/app/shared/objects/api-response';
 import {User} from 'src/app/shared/objects/global-objects';
 import {ApiService} from 'src/app/shared/services/api.service';
@@ -16,8 +18,11 @@ export class EditStudentProfileComponent implements OnInit {
 
   profileForm!: FormGroup;
   isLoading = false;
+  isListLoading = false;
   submitted = false;
   skills = new Set<string>([]);
+  filteredFruits!: Observable<string[]>;
+  allSkills: string[] = ['Java'];
 
   constructor(
     private fb: FormBuilder,
@@ -28,6 +33,7 @@ export class EditStudentProfileComponent implements OnInit {
   ) {
     // Disabled dialog close when clicked outside
     dialogRef.disableClose = true;
+    this.loadSkillList();
     this.createForm();
     this.profileForm.patchValue(data);
     if (data?.skills) {
@@ -35,6 +41,8 @@ export class EditStudentProfileComponent implements OnInit {
         this.skills.add(skill);
       }
     }
+    
+    this.filteredFruits = of([]);
   }
 
   ngOnInit(): void {
@@ -57,6 +65,12 @@ export class EditStudentProfileComponent implements OnInit {
 
   get f(): any { return this.profileForm.controls; }
 
+  private _filter(value: string): string[] {
+    const filterValue = value.toLowerCase();
+
+    return this.allSkills.filter(fruit => fruit.toLowerCase().includes(filterValue));
+  }
+
   addKeywordFromInput(event: MatChipInputEvent) {
     if (event.value) {
       this.skills.add(event.value);
@@ -68,6 +82,29 @@ export class EditStudentProfileComponent implements OnInit {
   removeKeyword(keyword: string) {
     this.skills.delete(keyword);
     this.profileForm.controls['skills'].setValue([...this.skills])
+  }
+
+  selected(event: MatAutocompleteSelectedEvent): void {
+    this.skills.add(event.option.viewValue);
+    this.profileForm.controls['skills'].setValue([...this.skills])
+  }
+  
+  loadSkillList(): void {
+    this.isListLoading = true;
+    this.api.getSkillList().subscribe({
+      next: (res: APIResponse<Array<string>>) => {
+        if (!res.error) {
+          this.allSkills = res.data;
+          this.filteredFruits = of(this.allSkills);
+        }
+      },
+      complete: () => {
+        this.isListLoading = false;
+      },
+      error: () => {
+        this.isListLoading = false;
+      }
+    });
   }
 
   onSubmit(): void {

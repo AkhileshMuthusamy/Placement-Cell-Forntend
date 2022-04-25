@@ -92,9 +92,15 @@
               <input
                 placeholder="New skill..."
                 [matChipInputFor]="chipList"
+                [matAutocomplete]="auto"
                 [matChipInputAddOnBlur]="true"
                 (matChipInputTokenEnd)="addKeywordFromInput($event)">
             </mat-chip-list>
+            <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+                <mat-option *ngFor="let fruit of filteredFruits | async" [value]="fruit">
+                  {{fruit}}
+                </mat-option>
+            </mat-autocomplete>
         </mat-form-field>
 
         <mat-form-field appearance="fill" class="w-100">
