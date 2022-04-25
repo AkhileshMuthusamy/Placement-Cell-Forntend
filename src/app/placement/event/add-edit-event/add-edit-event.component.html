@@ -20,6 +20,25 @@
             </div>
         </div>
 
+        <div [appLoader]="isFetchingSkillFromJD" fxLayout="row" fxLayoutAlign="center start" fxLayoutGap="10px">
+            <mat-form-field appearance="fill" class="w-100">
+                <mat-label>Skills</mat-label>
+                <mat-select formControlName="skills" name="skills" multiple>
+                    <mat-option let *ngFor="let skill of skills" [value]="skill">{{skill}}</mat-option>
+                </mat-select>
+                <mat-error *ngIf="f['skills'].invalid && (f['skills'].dirty || f['skills'].touched || submitted)">
+                    Required
+                </mat-error>
+            </mat-form-field>
+            <div>
+                <input hidden type="file" #fileInput [accept]="fileTypes.join(',')" (change)="fileChangeEvent($event)" />
+                <button fxFlex="125px" mat-raised-button color="primary" class="w-100" [disabled]="isLoading" (click)="fileInput.value = ''; fileInput.click()">
+                    Browse
+                </button>
+            </div>
+        </div>
+        
+
         <mat-form-field appearance="fill" class="w-100">
             <mat-label>Event Date</mat-label>
             <input matInput [ngxMatDatetimePicker]="picker" placeholder="Choose a date" formControlName="date" [min]="minDate" />
@@ -54,13 +73,22 @@
             </mat-error>
         </mat-form-field>
 
-        <mat-form-field appearance="fill" class="w-100">
-            <mat-label>Minimum CGPA required to attend event</mat-label>
-            <input matInput type="number" formControlName="minCgpa" max="10"/>
-            <mat-error *ngIf="f['minCgpa'].invalid && (f['minCgpa'].dirty || f['minCgpa'].touched || submitted)">
-                Required
-            </mat-error>
-        </mat-form-field>
+        <div fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="space-between start">
+            <mat-form-field fxFlex appearance="fill">
+                <mat-label>Minimum CGPA required to attend event</mat-label>
+                <input matInput type="number" formControlName="minCgpa" max="10"/>
+                <mat-error *ngIf="f['minCgpa'].invalid && (f['minCgpa'].dirty || f['minCgpa'].touched || submitted)">
+                    Required
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field fxFlex appearance="fill">
+                <mat-label>Minimum 12th Percentage required to attend event</mat-label>
+                <input matInput type="number" formControlName="minHSMark" min="0" max="100"/>
+                <mat-error *ngIf="f['minHSMark'].invalid && (f['minHSMark'].dirty || f['minHSMark'].touched || submitted)">
+                    Required
+                </mat-error>
+            </mat-form-field>
+        </div>
 
         <div fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="space-between start">
             <mat-form-field fxFlex appearance="fill">

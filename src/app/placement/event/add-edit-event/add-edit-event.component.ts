@@ -1,6 +1,7 @@
 import {Component, Inject, OnDestroy, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import {MatSnackBar} from '@angular/material/snack-bar';
 import {Editor, Toolbar, Validators as NgxValidator} from 'ngx-editor';
 import {APIResponse} from 'src/app/shared/objects/api-response';
 import {ApiService} from 'src/app/shared/services/api.service';
@@ -14,6 +15,7 @@ export class AddEditEventComponent implements OnInit, OnDestroy {
 
   eventForm!: FormGroup;
   isLoading = false;
+  isFetchingSkillFromJD = false;
   submitted = false;
   minDate = new Date();
   editor: Editor = new Editor();
@@ -22,6 +24,14 @@ export class AddEditEventComponent implements OnInit, OnDestroy {
   isListLoading = false;
   departments: Array<string> = [];
   batches: Array<string> = [];
+
+  skills: Array<string> = [];
+
+  selectedFile!: File | undefined;
+  validFileTypes: { [key: string]: string } = {
+    'application/pdf': 'pdf',
+    'application/vnd.openxmlformats-officedocument.wordprocessingml.document': 'docx',
+  };
 
   toolbar: Toolbar = [
     ['bold', 'italic'],
@@ -37,6 +47,7 @@ export class AddEditEventComponent implements OnInit, OnDestroy {
   constructor(
     private fb: FormBuilder,
     private api: ApiService,
+    private snackBar: MatSnackBar,
     public dialogRef: MatDialogRef<AddEditEventComponent>,
     @Inject(MAT_DIALOG_DATA) public data: {formData: any, mode: string},
   ) {
@@ -47,6 +58,7 @@ export class AddEditEventComponent implements OnInit, OnDestroy {
 
     this.loadBatchList();
     this.loadDepartmentList();
+    this.loadSkillList();
   }
 
   ngOnInit(): void {
@@ -63,6 +75,9 @@ export class AddEditEventComponent implements OnInit, OnDestroy {
       body: ['', NgxValidator.required()],
       date: ['', Validators.required],
       minCgpa: [0, Validators.required],
+      minHSMark: [0, Validators.required],
+      skills: [undefined],
+      jd: [''],
       remindAt: [],
       batch: [[]],
       department: [[]]
@@ -71,6 +86,23 @@ export class AddEditEventComponent implements OnInit, OnDestroy {
   }
 
   get f(): any { return this.eventForm.controls; }
+
+  loadSkillList(): void {
+    this.isListLoading = true;
+    this.api.getSkillList().subscribe({
+      next: (res: APIResponse<Array<string>>) => {
+        if (!res.error) {
+          this.skills = res.data;
+        }
+      },
+      complete: () => {
+        this.isListLoading = false;
+      },
+      error: () => {
+        this.isListLoading = false;
+      }
+    });
+  }
 
   loadDepartmentList(): void {
     this.isListLoading = true;
@@ -104,6 +136,64 @@ export class AddEditEventComponent implements OnInit, OnDestroy {
         this.isListLoading = false;
       }
     });
+  }
+
+  get fileTypes() {
+    return Object.keys(this.validFileTypes);
+  }
+
+  fileChangeEvent(event: any): void {
+    this.resetState();
+    if (event instanceof DragEvent) {
+      this.selectedFile = event.dataTransfer?.files[0];
+    } else {
+      if (event.target.files.length > 0) {
+        this.selectedFile = event.target.files[0];
+      }
+    }
+
+    console.log(this.selectedFile?.type);
+    if (this.fileTypes.includes(this.selectedFile?.type || '')) {
+      this.fetchSkillsFromJD();
+    } else {
+      this.resetState();
+      this.snackBar.open('Invalid file type', 'Close', { duration: 2000 });
+    }
+  }
+
+  getDateTimeString() {
+    let current = new Date();
+    let cDate = `${current.getFullYear()}` + `${(current.getMonth() + 1)}` + `${current.getDate()}`;
+    let cTime = `${current.getHours()}` + `${current.getMinutes()}` + `${current.getSeconds()}`;
+    let dateTime = cDate + cTime;
+    console.log(dateTime);
+    return dateTime;
+}
+
+  fetchSkillsFromJD(): void {
+    if (this.selectedFile) {
+      this.eventForm.controls['skills'].setValue([]);
+      this.isFetchingSkillFromJD = true;
+      const formData = new FormData();
+      formData.append('file', this.selectedFile);
+    
+      this.api.fetchSkillFromJD(formData).subscribe({
+        next: (res: APIResponse<any>) => {
+          this.eventForm.controls['skills'].setValue(res.data.skills);
+          this.eventForm.controls['jd'].setValue(res.data.jd);
+          this.isFetchingSkillFromJD = false;
+        },
+        complete: () => {},
+        error: (err: {error: {message: any}}) => {
+          this.isFetchingSkillFromJD = false;
+        }
+      });
+    }
+    this.resetState();
+  }
+
+  resetState(): void {
+    this.selectedFile = undefined;
   }
 
   onSubmit(): void {
