@@ -66,7 +66,9 @@ export class ManageFacultyComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-
+      if (result === 'SUCCESS') {
+        this.loadList();
+      }
     });
   }
 
@@ -77,7 +79,9 @@ export class ManageFacultyComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-
+      if (result === 'SUCCESS') {
+        this.loadList();
+      }
     });
   }
 
