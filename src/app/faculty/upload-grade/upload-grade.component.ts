@@ -110,16 +110,25 @@ export class UploadGradeComponent implements OnInit {
       
       readXlsxFile(this.selectedFile).then((rows) => {
         if (rows.length > 1) {
-          this.headerRow = rows[0].map(_ => _.toString()); // <== Converting type Cell to Array
+          this.headerRow = rows[1].map(_ => _.toString()); // <== Converting type Cell to Array
           const subjectStartIndex = 2;
           let subjectEndIndex = this.getSubjectEndIndex(this.headerRow);
           const semester = this.getSemester(this.headerRow);
-          let subjects = this.headerRow.slice(subjectStartIndex, subjectEndIndex)
+          let subjects = this.headerRow.slice(subjectStartIndex, subjectEndIndex);
+          let credits = rows[0].slice(subjectStartIndex, subjectEndIndex);
+          credits = credits.map(_ => +_);
+          console.log(credits);
           console.log(subjects);
 
+          if (credits.length !== subjects.length) {
+            this.snackBar.open('Unable to parse file. Error while checking for subject credits', 'Close', {
+              duration: 10000,
+            });
+            return;
+          }
 
           // Iterate over student marks, skipping header
-          for (let row of rows.slice(1)) {
+          for (let row of rows.slice(2)) {
             let obj: StudentGrade = {
               id: '',
               name: '',
@@ -136,22 +145,25 @@ export class UploadGradeComponent implements OnInit {
             obj['semester'] = semester;
             obj['uploadedBy'] = this.authService.getUserProfile().id;
 
-            let total = 0
+            let total = 0;
+            let totalCredits = 0;
             const numberOfSubjects = row.slice(subjectStartIndex, subjectEndIndex).length;
             for (let [index, mark] of row.slice(subjectStartIndex, subjectEndIndex).entries()) {
-              let individualSubjectMark = { subject: '', mark: 0};
+              let individualSubjectMark = { subject: '', mark: 0, credit: credits[index] };
               individualSubjectMark.subject = subjects[index];
               individualSubjectMark.mark = parseFloat(mark.toString());
-              total += parseFloat(mark.toString());
+              total += parseFloat(mark.toString()) * parseInt(credits[index].toString());
+              totalCredits += parseInt(credits[index].toString());
               obj['marks'].push({...individualSubjectMark});
             }
 
+            console.log(total, totalCredits);
             obj['previousGpaHeader'] = this.headerRow.slice(numberOfSubjects + subjectStartIndex);
             for (let mark of row.slice(numberOfSubjects + subjectStartIndex)) {
               obj['previousGpa'].push(parseFloat(mark.toString()));
             }
 
-            obj['sgpa'] = +((total / numberOfSubjects) / 9.5).toFixed(2)
+            obj['sgpa'] = +(total / totalCredits).toFixed(3)
             obj['cgpa'] = this.getCgpa(this.headerRow, row, obj['sgpa']);
             this.studentMarks.push(obj);
           }
@@ -181,18 +193,18 @@ export class UploadGradeComponent implements OnInit {
 
   getCgpa(headerRow: any, studentRow: any, currentSgpa: number): number {
     // Calculate the current semester CGPA
-    let previous_sgpa = 0
+    let previousSgpa = 0
     let n = 1
     for (let [index, header] of headerRow.entries()) {
       if (typeof(header) === 'string') {
         if (header.toLowerCase().indexOf('sgpa') !== -1) {
-          previous_sgpa += parseFloat(studentRow[index].toString());
+          previousSgpa += parseFloat(studentRow[index].toString());
           n += 1;
         }
       }
     }
 
-    return  +((currentSgpa + previous_sgpa)/n).toFixed(2);
+    return  +((currentSgpa + previousSgpa)/n).toFixed(3);
   }
 
   getSubjectEndIndex(headerRow: any): number {
