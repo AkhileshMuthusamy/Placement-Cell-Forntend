@@ -75,6 +75,7 @@ export class AddEditEventComponent implements OnInit, OnDestroy {
       body: ['', NgxValidator.required()],
       date: ['', Validators.required],
       minCgpa: [0, Validators.required],
+      minSslcMark: [0, Validators.required],
       minHSMark: [0, Validators.required],
       skills: [undefined],
       jd: [''],

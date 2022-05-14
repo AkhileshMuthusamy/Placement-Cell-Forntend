@@ -16,6 +16,7 @@ export interface User {
     'hasNotified': boolean;
     'skills': Array<string>;
     'cgpa': number;
+    'sslcMark': number;
     'hsMark': number;
     'disabled': boolean;
     'department': string;
