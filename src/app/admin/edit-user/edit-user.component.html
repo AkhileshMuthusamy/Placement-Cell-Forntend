@@ -51,7 +51,21 @@
                 </mat-error>
             </mat-form-field>
 
-            <mat-form-field *ngIf="data.type === 'STUDENT'" fxFlex appearance="fill">
+        </div>
+
+        <div *ngIf="data.type === 'STUDENT'" fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="space-between center">
+            <mat-form-field fxFlex appearance="fill">
+                <mat-label>10th Mark Percentage</mat-label>
+                <input matInput type="number" formControlName="sslcMark" min="0" max="100"/>
+                <mat-error *ngIf="f['sslcMark'].errors?.['required'] && (f['sslcMark'].dirty || f['sslcMark'].touched || submitted)">
+                    Required
+                </mat-error>
+                <mat-error *ngIf="f['sslcMark'].errors?.['sslcMark'] && (f['sslcMark'].dirty || f['sslcMark'].touched || submitted)">
+                    Invalid value
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field fxFlex appearance="fill">
                 <mat-label>12th Mark Percentage</mat-label>
                 <input matInput type="number" formControlName="hsMark" min="0" max="100"/>
                 <mat-error *ngIf="f['hsMark'].errors?.['required'] && (f['hsMark'].dirty || f['hsMark'].touched || submitted)">

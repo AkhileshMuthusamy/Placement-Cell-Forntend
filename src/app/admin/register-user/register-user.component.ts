@@ -27,6 +27,7 @@ export class RegisterUserComponent implements OnInit {
     if (this.data.type === 'STUDENT') {
       this.registrationForm.controls['department'].setValidators(Validators.required);
       this.registrationForm.controls['batch'].setValidators(Validators.required);
+      this.registrationForm.controls['sslcMark'].setValidators(Validators.required);
       this.registrationForm.controls['hsMark'].setValidators(Validators.required);
     }
   }
@@ -47,6 +48,7 @@ export class RegisterUserComponent implements OnInit {
       skills: [],
       department: [],
       batch: [],
+      sslcMark: [0],
       hsMark: [0]
     });
 
