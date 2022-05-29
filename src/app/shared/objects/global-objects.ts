@@ -22,4 +22,11 @@ export interface User {
     'department': string;
     'batch': string;
     'resume': string;
+    'parentPhone': string;
+    'parent1Name': string;
+    'parent2Name': string;
+    'landmark': string;
+    'city': string;
+    'state': string;
+    'nationality': string;
 }

@@ -8,6 +8,7 @@ import {ApiService} from 'src/app/shared/services/api.service';
 import {AuthService} from 'src/app/shared/services/auth.service';
 import {DataService} from 'src/app/shared/services/data.service';
 import {EditStudentProfileComponent} from '../edit-student-profile/edit-student-profile.component';
+import countries from '../../../assets/countries.json';
 
 @Component({
   selector: 'app-student-profile',
@@ -42,6 +43,14 @@ export class StudentProfileComponent implements OnInit {
         console.log(this.profile)
       }
     });
+  }
+
+  get countries(): {[key:string]: string} {
+    return countries;
+  }
+
+  getCountry(countryCode: string) {
+    return this.countries[countryCode]
   }
 
   openEditProfileDialog(): void {

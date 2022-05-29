@@ -8,6 +8,7 @@ import {APIResponse} from 'src/app/shared/objects/api-response';
 import {User} from 'src/app/shared/objects/global-objects';
 import {ApiService} from 'src/app/shared/services/api.service';
 import {DataService} from 'src/app/shared/services/data.service';
+import countries from '../../../assets/countries.json';
 
 @Component({
   selector: 'app-edit-student-profile',
@@ -43,9 +44,15 @@ export class EditStudentProfileComponent implements OnInit {
     }
     
     this.filteredFruits = of([]);
+
+    console.log(countries);
   }
 
   ngOnInit(): void {
+  }
+
+  get countries() {
+    return countries;
   }
 
   createForm(): void {
@@ -58,7 +65,14 @@ export class EditStudentProfileComponent implements OnInit {
       gender: ['', Validators.required],
       dateOfBirth: [null],
       skills: [],
-      address: ['']
+      address: [''],
+      parentPhone: [''],
+      parent1Name: [''],
+      parent2Name: [''],
+      landmark: [''],
+      city: [''],
+      state: [''],
+      nationality: [''],
     });
 
   }

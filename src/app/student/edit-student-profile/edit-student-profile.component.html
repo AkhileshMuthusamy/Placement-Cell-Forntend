@@ -2,21 +2,23 @@
 <mat-divider></mat-divider>
 <mat-dialog-content class="p-3">
     <form [formGroup]="profileForm" class="w-100">
-        <mat-form-field appearance="fill" class="w-100">
-            <mat-label>First Name</mat-label>
-            <input matInput type="text" formControlName="firstName" />
-            <mat-error *ngIf="f['firstName'].invalid && (f['firstName'].dirty || f['firstName'].touched || submitted)">
-                Required
-            </mat-error>
-        </mat-form-field>
-
-        <mat-form-field appearance="fill" class="w-100">
-            <mat-label>Last Name</mat-label>
-            <input matInput type="text" formControlName="lastName" />
-            <mat-error *ngIf="f['lastName'].invalid && (f['lastName'].dirty || f['lastName'].touched || submitted)">
-                Required
-            </mat-error>
-        </mat-form-field>
+        <div fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="space-between center">
+            <mat-form-field appearance="fill" class="w-100">
+                <mat-label>First Name</mat-label>
+                <input matInput type="text" formControlName="firstName" />
+                <mat-error *ngIf="f['firstName'].invalid && (f['firstName'].dirty || f['firstName'].touched || submitted)">
+                    Required
+                </mat-error>
+            </mat-form-field>
+    
+            <mat-form-field appearance="fill" class="w-100">
+                <mat-label>Last Name</mat-label>
+                <input matInput type="text" formControlName="lastName" />
+                <mat-error *ngIf="f['lastName'].invalid && (f['lastName'].dirty || f['lastName'].touched || submitted)">
+                    Required
+                </mat-error>
+            </mat-form-field>
+        </div>
 
         <div fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="space-between center">
 
@@ -29,7 +31,7 @@
             </mat-form-field>
 
             <mat-form-field fxFlex appearance="fill" class="w-100">
-                <mat-label>Mobile</mat-label>
+                <mat-label>Personal Mobile</mat-label>
                 <input matInput type="tel" formControlName="phone" />
                 <mat-error *ngIf="f['phone'].invalid && (f['phone'].dirty || f['phone'].touched || submitted)">
                     Required
@@ -39,16 +41,29 @@
 
         </div>
 
-        <mat-form-field appearance="fill" class="w-100">
-            <mat-label>Email</mat-label>
-            <input matInput type="email" formControlName="email" />
-            <mat-error *ngIf="f['email'].errors?.['required'] && (f['email'].dirty || f['email'].touched || submitted)">
-                Required
-            </mat-error>
-            <mat-error *ngIf="f['email'].errors?.['email'] && (f['email'].dirty || f['email'].touched || submitted)">
-                Invalid email
-            </mat-error>
-        </mat-form-field>
+        <div fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="space-between center">
+            <mat-form-field fxFlex appearance="fill" class="w-100">
+                <mat-label>Email</mat-label>
+                <input matInput type="email" formControlName="email" />
+                <mat-error *ngIf="f['email'].errors?.['required'] && (f['email'].dirty || f['email'].touched || submitted)">
+                    Required
+                </mat-error>
+                <mat-error *ngIf="f['email'].errors?.['email'] && (f['email'].dirty || f['email'].touched || submitted)">
+                    Invalid email
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field fxFlex appearance="fill" class="w-100">
+                <mat-label>Parent's Mobile</mat-label>
+                <input matInput type="tel" formControlName="parentPhone" />
+                <mat-error *ngIf="f['parentPhone'].invalid && (f['parentPhone'].dirty || f['parentPhone'].touched || submitted)">
+                    Required
+                </mat-error>
+            </mat-form-field>
+
+
+        </div>
+
         
         <div fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="space-between center">
 
@@ -58,7 +73,7 @@
                     <mat-option value="MALE">Male</mat-option>
                     <mat-option value="FEMALE">Female</mat-option>
                     <mat-option value="OTHER">Other</mat-option>
-                  </mat-select>
+                </mat-select>
                 <mat-error *ngIf="f['gender'].invalid && (f['gender'].dirty || f['gender'].touched || submitted)">
                     Required
                 </mat-error>
@@ -103,6 +118,24 @@
             </mat-autocomplete>
         </mat-form-field>
 
+        <div fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="space-between center">
+            <mat-form-field appearance="fill" class="w-100">
+                <mat-label>Father's Name</mat-label>
+                <input matInput type="text" formControlName="parent1Name" />
+                <mat-error *ngIf="f['parent1Name'].invalid && (f['parent1Name'].dirty || f['parent1Name'].touched || submitted)">
+                    Required
+                </mat-error>
+            </mat-form-field>
+    
+            <mat-form-field appearance="fill" class="w-100">
+                <mat-label>Mother's Name</mat-label>
+                <input matInput type="text" formControlName="parent2Name" />
+                <mat-error *ngIf="f['parent2Name'].invalid && (f['parent2Name'].dirty || f['parent2Name'].touched || submitted)">
+                    Required
+                </mat-error>
+            </mat-form-field>
+        </div>
+
         <mat-form-field appearance="fill" class="w-100">
             <mat-label>Address</mat-label>
             <textarea matInput type="text" formControlName="address"></textarea>
@@ -110,6 +143,48 @@
                 Required
             </mat-error>
         </mat-form-field>
+
+        <div fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="space-between center">
+
+            <mat-form-field fxFlex appearance="fill" class="w-100">
+                <mat-label>Landmark</mat-label>
+                <input matInput type="text" formControlName="landmark"/>
+                <mat-error *ngIf="f['landmark'].invalid && (f['landmark'].dirty || f['landmark'].touched || submitted)">
+                    Required
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field fxFlex appearance="fill" class="w-100">
+                <mat-label>City</mat-label>
+                <input matInput type="text" formControlName="city" />
+                <mat-error *ngIf="f['city'].invalid && (f['city'].dirty || f['city'].touched || submitted)">
+                    Required
+                </mat-error>
+            </mat-form-field>
+
+        </div>
+
+        <div fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="space-between center">
+
+            <mat-form-field fxFlex appearance="fill" class="w-100">
+                <mat-label>State</mat-label>
+                <input matInput type="text" formControlName="state"/>
+                <mat-error *ngIf="f['state'].invalid && (f['state'].dirty || f['state'].touched || submitted)">
+                    Required
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field fxFlex appearance="fill" class="w-100">
+                <mat-label>Nationality</mat-label>
+                <mat-select formControlName="nationality" name="nationality">
+                    <mat-option *ngFor="let country of countries | keyvalue" [value]="country.key">{{country.value}}</mat-option>
+                </mat-select>
+                <mat-error *ngIf="f['nationality'].invalid && (f['nationality'].dirty || f['nationality'].touched || submitted)">
+                    Required
+                </mat-error>
+            </mat-form-field>
+
+        </div>
 
     </form>
 </mat-dialog-content>

@@ -97,14 +97,49 @@
             <div fxFlex>{{profile?.email}}</div>
         </div>
         <div fxLayout="row" fxLayoutGap="15px" class="w-100 mb-2">
-            <div fxFlex="200px">Phone</div>
+            <div fxFlex="200px">Personal Phone</div>
             <span fxFlex="5px">:</span>
             <div fxFlex>{{profile?.phone}}</div>
         </div>
         <div fxLayout="row" fxLayoutGap="15px" class="w-100 mb-2">
+            <div fxFlex="200px">Parent Phone</div>
+            <span fxFlex="5px">:</span>
+            <div fxFlex>{{profile?.parentPhone}}</div>
+        </div>
+        <div fxLayout="row" fxLayoutGap="15px" class="w-100 mb-2">
+            <div fxFlex="200px">Father's Name</div>
+            <span fxFlex="5px">:</span>
+            <div fxFlex>{{profile?.parent1Name}}</div>
+        </div>
+        <div fxLayout="row" fxLayoutGap="15px" class="w-100 mb-2">
+            <div fxFlex="200px">Mother's Phone</div>
+            <span fxFlex="5px">:</span>
+            <div fxFlex>{{profile?.parent2Name}}</div>
+        </div>
+        <div fxLayout="row" fxLayoutGap="15px" class="w-100 mb-2">
             <div fxFlex="200px">Address</div>
             <span fxFlex="5px">:</span>
-            <address fxFlex>{{profile?.address}}</address>
+            <div fxFlex>{{profile?.address}}</div>
+        </div>
+        <div fxLayout="row" fxLayoutGap="15px" class="w-100 mb-2">
+            <div fxFlex="200px">Landmark</div>
+            <span fxFlex="5px">:</span>
+            <div fxFlex>{{profile?.landmark}}</div>
+        </div>
+        <div fxLayout="row" fxLayoutGap="15px" class="w-100 mb-2">
+            <div fxFlex="200px">City</div>
+            <span fxFlex="5px">:</span>
+            <div fxFlex>{{profile?.city}}</div>
+        </div>
+        <div fxLayout="row" fxLayoutGap="15px" class="w-100 mb-2">
+            <div fxFlex="200px">State</div>
+            <span fxFlex="5px">:</span>
+            <div fxFlex>{{profile?.state}}</div>
+        </div>
+        <div fxLayout="row" fxLayoutGap="15px" class="w-100 mb-2">
+            <div fxFlex="200px">Nationality</div>
+            <span fxFlex="5px">:</span>
+            <div fxFlex>{{getCountry(profile?.nationality || 'IN')}}</div>
         </div>
     </div>
 
