@@ -94,7 +94,7 @@ export class StudentProfileComponent implements OnInit {
     if (this.selectedFile) {
       this.isLoading = true;
 
-      this.selectedFile = new File([this.selectedFile], `${this.authService.getUserProfile().id}.${this.validFileTypes[this.selectedFile?.type]}`);
+      // this.selectedFile = new File([this.selectedFile], `${this.authService.getUserProfile().id}.${this.validFileTypes[this.selectedFile?.type]}`);
       const formData = new FormData();
       formData.append('file', this.selectedFile);
     
